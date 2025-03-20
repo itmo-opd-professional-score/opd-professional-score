@@ -7,7 +7,7 @@ export class AppController {
 
   @Get('/')
   getFirstHello() {
-    return 'Hello, my dear friend!';
+    return 'Hello, my dear friend! Nice to meet you!';
   }
 
   @Get('/getHello')
