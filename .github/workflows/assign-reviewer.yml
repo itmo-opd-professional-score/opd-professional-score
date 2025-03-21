@@ -1,0 +1,24 @@
+name: Assign Reviewer
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  assign-reviewer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Assign Reviewer
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.pulls.createReviewRequest({
+              owner: github.context.repo.owner,
+              repo: github.context.repo.repo,
+              pull_number: github.context.pullRequest.number,
+              reviewers: ['scobca', 'TheGeniusOfEternity']
+            })
