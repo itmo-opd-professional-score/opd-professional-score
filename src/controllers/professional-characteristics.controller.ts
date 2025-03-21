@@ -34,6 +34,11 @@ export class ProfessionalCharacteristicsController {
     return await this.profCharProvider.getProfCharById(id);
   }
 
+  @Post('/createElasticDocs')
+  public async createElasticDocs() {
+    await this.profCharProvider.createElasticPc();
+  }
+
   @Post('/createProfChar')
   public async createProfChar(@Body() data: CreateProfCharDto) {
     return await this.profCharProvider.createProfChar(data);

@@ -51,6 +51,21 @@ export class ProfessionalCharacteristicsProvider {
     return profChar;
   }
 
+  public async createElasticPc() {
+    const pc = await ProfessionalCharacteristics.findAll();
+    for (const profChar of pc) {
+      const newDoc: CreateNewElasticPcDto = {
+        index: 'professional-characteristics',
+        id: String(profChar.id),
+        name: profChar.name,
+        description: profChar.description,
+        PCType: profChar.PCType,
+      };
+
+      await this.elasticUtil.create(newDoc);
+    }
+  }
+
   public async createProfChar(data: CreateProfCharDto) {
     if (!(await this.checkNameUnique(data.name))) {
       throw new DoubleRecordException(
