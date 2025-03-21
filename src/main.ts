@@ -14,7 +14,7 @@ async function bootstrap() {
     process.env.DB_USERNAME as string,
     process.env.DB_PASSWORD as string,
     {
-      host: 'localhost',
+      host: 'postgres',
       dialect: 'postgres',
     },
   );
