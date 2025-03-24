@@ -16,9 +16,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const { github, context } = require('@actions/github');
             github.pulls.createReviewRequest({
-              owner: github.context.repo.owner,
-              repo: github.context.repo.repo,
-              pull_number: github.context.pullRequest.number,
-              reviewers: ['scobca', 'TheGeniusOfEternity']
-            })
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              reviewers: ['scobca']
+            });
