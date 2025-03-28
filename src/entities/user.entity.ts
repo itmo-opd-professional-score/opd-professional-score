@@ -18,6 +18,7 @@ import { SimpleLightTestEntity } from './simple-light-test.entity';
 import { SimpleSoundTestEntity } from './simple-sound-test.entity';
 import { HardLightTestEntity } from './hard-light-test.entity';
 import { AdditionTestEntity } from './addition-test.entity';
+import { GenderEnum } from '../config/enums/gender.enum';
 
 @Table({ tableName: 'user' })
 export class User extends Model {
@@ -41,6 +42,15 @@ export class User extends Model {
 
   @Column
   isBanned: boolean;
+
+  @Column({ allowNull: false })
+  age: number;
+
+  @Column({
+    allowNull: false,
+    type: DataType.ENUM(...Object.values(GenderEnum)),
+  })
+  gender: GenderEnum;
 
   @HasMany(() => ProfessionScores, { onDelete: 'CASCADE' })
   profScores: ProfessionScores[];

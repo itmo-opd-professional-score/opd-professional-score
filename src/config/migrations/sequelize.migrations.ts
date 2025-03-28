@@ -12,19 +12,14 @@ const sequelize = new Sequelize(
   },
 );
 
-async function updateTable() {
-  await sequelize.query(
-    'ALTER TABLE professions ALTER COLUMN requirements TYPE TEXT;',
-  );
-  await sequelize.query(
-    'ALTER TABLE professions ALTER COLUMN description TYPE TEXT;',
-  );
-}
+export class SequelizeMigrations {
+  public async updateUserTable() {
+    await sequelize.query(`CREATE TYPE gender AS ENUM ('MALE', 'FEMALE');`);
 
-updateTable()
-  .then(() => {
-    console.log('Таблица обновлена');
-  })
-  .catch((error) => {
-    console.error('Ошибка при обновлении таблицы:', error);
-  });
+    await sequelize.query(
+      `ALTER TABLE "user" ADD COLUMN age INTEGER CHECK (age > 0);`,
+    );
+
+    await sequelize.query('ALTER TABLE "user" ADD COLUMN gender gender;');
+  }
+}
