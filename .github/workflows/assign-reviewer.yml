@@ -16,7 +16,6 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { github, context } = require('@actions/github');
             const reviewers = ['scobca'];
             
             github.pulls.createReviewRequest({
