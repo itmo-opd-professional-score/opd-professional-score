@@ -1,6 +1,6 @@
-import { Roles } from '../../config/enums/roles.enum';
+import { RolesEnum } from '../../config/enums/roles.enum';
 
 export class SuccessAuthResponseDto {
   token: string;
-  role: Roles;
+  role: RolesEnum;
 }

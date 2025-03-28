@@ -9,7 +9,7 @@ import {
   Table,
   Unique,
 } from 'sequelize-typescript';
-import { Roles } from '../config/enums/roles.enum';
+import { RolesEnum } from '../config/enums/roles.enum';
 import { Test } from './test.entity';
 import { TestToUserDashboard } from './test-to-user-dashboard.entity';
 import { TestBlock } from './test-blocks.entity';
@@ -34,8 +34,8 @@ export class User extends Model {
   @Column({ allowNull: false })
   email: string;
 
-  @Column({ type: DataType.ENUM(...Object.values(Roles)), allowNull: false })
-  role: Roles;
+  @Column({ type: DataType.ENUM(...Object.values(RolesEnum)), allowNull: false })
+  role: RolesEnum;
 
   @Column({ allowNull: false })
   password: string;

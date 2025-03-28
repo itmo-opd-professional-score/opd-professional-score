@@ -14,7 +14,7 @@ import { CreateUserDto } from '../dto/user/create-user.dto';
 import { UpdateUserDto } from '../dto/user/update-user.dto';
 import { BasicSuccessfulResponse } from '../IO/basic-successful-response';
 import { SetUserRoleDto } from '../dto/user/set-user-role.dto';
-import { Roles } from '../config/enums/roles.enum';
+import { RolesEnum } from '../config/enums/roles.enum';
 import { SuccessAuthResponseDto } from '../dto/auth/success-auth-response.dto';
 import { ChangePassFirstStepDto } from '../dto/user/change-pass-first-step.dto';
 import { ChangePassSecondStepDto } from '../dto/user/change-pass-second-step.dto';
@@ -58,7 +58,7 @@ export class UserController {
 
   @Get('/getUsersByRole/:role')
   public async getUsersByRole(
-    @Param('role') role: Roles,
+    @Param('role') role: RolesEnum,
   ): Promise<BasicSuccessfulResponse<User[]> | null> {
     return await this.userProvider.getUsersByRole(role);
   }
