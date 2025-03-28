@@ -34,7 +34,10 @@ export class User extends Model {
   @Column({ allowNull: false })
   email: string;
 
-  @Column({ type: DataType.ENUM(...Object.values(RolesEnum)), allowNull: false })
+  @Column({
+    type: DataType.ENUM(...Object.values(RolesEnum)),
+    allowNull: false,
+  })
   role: RolesEnum;
 
   @Column({ allowNull: false })
@@ -43,11 +46,11 @@ export class User extends Model {
   @Column
   isBanned: boolean;
 
-  @Column({ allowNull: false })
-  age: number;
+  @Column({ allowNull: true })
+  age: Date;
 
   @Column({
-    allowNull: false,
+    allowNull: true,
     type: DataType.ENUM(...Object.values(GenderEnum)),
   })
   gender: GenderEnum;
