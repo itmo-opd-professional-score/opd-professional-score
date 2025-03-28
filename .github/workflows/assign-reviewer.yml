@@ -8,4 +8,4 @@ jobs:
     steps:
       - uses: hkusu/review-assign-action@v1
         with:
-          reviewers: scobca
+          reviewers: scobca, Copilot
