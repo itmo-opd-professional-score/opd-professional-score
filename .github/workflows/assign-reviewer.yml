@@ -1,28 +1,11 @@
-name: Auto Assign Reviewers
-
+name: Review Assign
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
-
+    types: [opened, ready_for_review]
 jobs:
-  assign-reviewers:
+  assign:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Auto assign reviewers using GitHub API
-        uses: actions/github-script@v6
+      - uses: hkusu/review-assign-action@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const pr = context.payload.pull_request;
-            const reviewers = ['scobca'];
-            const response = await github.pulls.requestReviewers({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: pr.number,
-              reviewers: reviewers
-            });
-            console.log('Assigned reviewers: ', reviewers);
+          reviewers: scobca
