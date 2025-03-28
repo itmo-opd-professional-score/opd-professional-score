@@ -13,13 +13,12 @@ export class ElasticUtil {
   ) {}
 
   // Return all documents if field "index" parameter equals void string and sort documents for index if field "index" not void
-  async getAllDocuments(index: string) {
+  async getAllDocumentsByTopic(index: string) {
     try {
       const res = await this.ess.search({
         index,
-        body: {
-          query: { match_all: {} },
-        },
+        query: { match_all: {} },
+        size: 500,
       });
 
       return res.hits.hits;
@@ -30,6 +29,19 @@ export class ElasticUtil {
       } else {
         throw err;
       }
+    }
+  }
+
+  public async getAllDocuments() {
+    try {
+      const res = await this.ess.search({
+        query: { match_all: {} },
+        size: 500,
+      });
+
+      return res.hits.hits;
+    } catch (err) {
+      console.log(err);
     }
   }
 
