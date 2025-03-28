@@ -18,7 +18,7 @@ jobs:
           script: |
             const reviewers = ['scobca'];
             
-            github.pulls.createReviewRequest({
+            await github.pulls.requestReviewers({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
