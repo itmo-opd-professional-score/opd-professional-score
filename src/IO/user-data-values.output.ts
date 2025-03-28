@@ -1,10 +1,10 @@
-import { Roles } from '../config/enums/roles.enum';
+import { RolesEnum } from '../config/enums/roles.enum';
 
 export class UserDataValuesOutput {
   id: number;
   username: string;
   email: string;
-  role: Roles;
+  role: RolesEnum;
   password: string;
   isBanned: boolean;
   createdAt: string;

@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Inject } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
-import { Roles } from '../config/enums/roles.enum';
+import { RolesEnum } from '../config/enums/roles.enum';
 import { UserDataValuesOutput } from '../IO/user-data-values.output';
 import { PermissionDeniedException } from '../exceptions/common/permission-denied.exception';
 
@@ -11,7 +11,7 @@ export class RolesGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    const requiredRoles = this.reflector.get<Roles[]>(
+    const requiredRoles = this.reflector.get<RolesEnum[]>(
       'roles',
       context.getHandler(),
     );

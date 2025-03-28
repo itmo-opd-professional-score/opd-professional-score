@@ -4,7 +4,7 @@ import { UserNotFoundException } from '../exceptions/users/user-not-found.except
 import { CreateUserDto } from '../dto/user/create-user.dto';
 import { DoubleRecordException } from '../exceptions/common/double-record.exception';
 import { BcryptUtil } from '../utils/bcrypt.util';
-import { Roles } from '../config/enums/roles.enum';
+import { RolesEnum } from '../config/enums/roles.enum';
 import { UpdateUserDto } from '../dto/user/update-user.dto';
 import { BasicSuccessfulResponse } from '../IO/basic-successful-response';
 import { SetUserRoleDto } from '../dto/user/set-user-role.dto';
@@ -17,6 +17,7 @@ import { MailerProvider } from './mailer.provider';
 import { MailInfoDto } from '../dto/mailer/mail-info.dto';
 import { ChangePassSecondStepDto } from '../dto/user/change-pass-second-step.dto';
 import { IncorrectVerificationCodeException } from '../exceptions/auth/incorrect-verification-code.exception';
+import { GenderEnum } from '../config/enums/gender.enum';
 
 @Injectable()
 export class UserProvider {
@@ -54,9 +55,9 @@ export class UserProvider {
   }
 
   public async getUsersByRole(
-    role: Roles,
+    role: RolesEnum,
   ): Promise<BasicSuccessfulResponse<User[]> | null> {
-    if (!Object.values(Roles).includes(role))
+    if (!Object.values(RolesEnum).includes(role))
       throw new InvalidEnumSyntaxException('Roles', role);
 
     const users = await User.findAll({
@@ -73,15 +74,21 @@ export class UserProvider {
         email: data.email,
       },
     });
+
     if (user != null)
       throw new DoubleRecordException(
         `User with email '${data.email}' already exists.`,
       );
 
+    if (data.gender != null && !Object.values(GenderEnum).includes(data.gender))
+      throw new InvalidEnumSyntaxException('GenderEnum', data.gender);
+
     const newUser = await User.create({
       username: data.username,
       email: data.email,
-      role: data.role == null ? Roles.USER : data.role,
+      role: data.role == null ? RolesEnum.USER : data.role,
+      age: data.age == null ? null : data.age,
+      gender: data.gender == null ? null : data.gender,
       password: await this.bcryptUtil.hashPassword(data.password),
       isBanned: data.isBanned == null ? false : data.isBanned,
     });
@@ -105,6 +112,15 @@ export class UserProvider {
   ): Promise<BasicSuccessfulResponse<User> | null> {
     await this.getUserById(data.id);
     const updatedData: Partial<User> = data.updatedData;
+
+    if (
+      data.updatedData.gender != null &&
+      !Object.values(GenderEnum).includes(data.updatedData.gender)
+    )
+      throw new InvalidEnumSyntaxException(
+        'GenderEnum',
+        data.updatedData.gender,
+      );
 
     if (updatedData.email != null) {
       const user = await User.findOne({
@@ -156,7 +172,7 @@ export class UserProvider {
     data: SetUserRoleDto,
   ): Promise<BasicSuccessfulResponse<string>> {
     await this.getUserById(data.id);
-    if (!Object.values(Roles).includes(data.role))
+    if (!Object.values(RolesEnum).includes(data.role))
       throw new InvalidEnumSyntaxException('Roles', data.role);
 
     await User.update({ role: data.role }, { where: { id: data.id } });

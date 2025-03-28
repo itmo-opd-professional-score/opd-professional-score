@@ -14,12 +14,7 @@ const sequelize = new Sequelize(
 
 export class SequelizeMigrations {
   public async updateUserTable() {
-    await sequelize.query(`CREATE TYPE gender AS ENUM ('MALE', 'FEMALE');`);
-
-    await sequelize.query(
-      `ALTER TABLE "user" ADD COLUMN age INTEGER CHECK (age > 0);`,
-    );
-
-    await sequelize.query('ALTER TABLE "user" ADD COLUMN gender gender;');
+    await sequelize.query(`ALTER TABLE "user" DROP COLUMN age;`);
+    await sequelize.query(`ALTER TABLE "user" ADD COLUMN age DATE;`);
   }
 }

@@ -1,7 +1,7 @@
-import { Roles } from '../../config/enums/roles.enum';
+import { RolesEnum } from '../../config/enums/roles.enum';
 
 export class ValidateJwtTokenDto {
   id: number;
   email: string;
-  role: Roles;
+  role: RolesEnum;
 }
