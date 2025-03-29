@@ -1,5 +1,5 @@
 export interface CreateSltDto {
-  userId: number;
+  userId: number | null;
   averageCallbackTime: number;
   allSignals: number;
   misclicks: number;

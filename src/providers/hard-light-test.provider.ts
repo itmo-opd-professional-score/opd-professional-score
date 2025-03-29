@@ -36,7 +36,8 @@ export class HardLightTestProvider {
   }
 
   public async create(data: CreateHltDto) {
-    await this.userProvider.getUserById(data.userId);
+    if (data.userId != null) await this.userProvider.getUserById(data.userId);
+    else data.userId = 10;
     const testType = await this.testTypesProvider.getTypeByName('HARD_LIGHT');
     const res = await HardLightTestEntity.create({
       ...data,

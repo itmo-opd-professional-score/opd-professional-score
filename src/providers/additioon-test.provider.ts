@@ -34,7 +34,8 @@ export class AdditionTestProvider {
   }
 
   public async createVisualAddition(data: CreateAtDto) {
-    await this.userProvider.getUserById(data.userId);
+    if (data.userId != null) await this.userProvider.getUserById(data.userId);
+    else data.userId = 10;
     const testType =
       await this.testTypesProvider.getTypeByName('VISUAL_ADDITION');
     const res = await AdditionTestEntity.create({
@@ -47,7 +48,8 @@ export class AdditionTestProvider {
   }
 
   public async createSoundAddition(data: CreateAtDto) {
-    await this.userProvider.getUserById(data.userId);
+    if (data.userId != null) await this.userProvider.getUserById(data.userId);
+    else data.userId = 10;
     const testType =
       await this.testTypesProvider.getTypeByName('SOUND_ADDITION');
     const res = await AdditionTestEntity.create({

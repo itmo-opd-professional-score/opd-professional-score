@@ -36,7 +36,8 @@ export class SimpleSoundTestProvider {
   }
 
   public async create(data: CreateSstDto) {
-    await this.userProvider.getUserById(data.userId);
+    if (data.userId != null) await this.userProvider.getUserById(data.userId);
+    else data.userId = 10;
     const testType = await this.testTypesProvider.getTypeByName('SIMPLE_SOUND');
     const res = await SimpleSoundTestEntity.create({
       testTypeId: testType?.id,
