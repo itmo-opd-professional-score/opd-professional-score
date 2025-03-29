@@ -9,7 +9,7 @@ import { AuthController } from '../controllers/auth.controller';
 import { AuthProvider } from '../providers/auth.provider';
 import { BcryptUtil } from '../utils/bcrypt.util';
 import { jwtConfig } from '../config/jwt.conf';
-import { JwtStrategy } from '../strategies/jwt.strategy';
+import { JwtAuthStrategy } from '../strategies/jwt.auth.strategy';
 import { AuthCodesStrategy } from '../strategies/auth-codes.strategy';
 import { CodeGeneratorUtil } from '../utils/code-generator.util';
 
@@ -26,7 +26,7 @@ import { CodeGeneratorUtil } from '../utils/code-generator.util';
   controllers: [AuthController],
   providers: [
     AuthProvider,
-    JwtStrategy,
+    JwtAuthStrategy,
     BcryptUtil,
     AuthCodesStrategy,
     CodeGeneratorUtil,

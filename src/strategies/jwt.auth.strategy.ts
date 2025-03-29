@@ -7,7 +7,7 @@ import { ValidateJwtTokenDto } from '../dto/auth/validate-jwt-token.dto';
 import { IncorrectTokenException } from '../exceptions/auth/incorrect-token.exception';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtAuthStrategy extends PassportStrategy(Strategy) {
   constructor(
     @Inject(UserProvider) private readonly userProvider: UserProvider,
   ) {
