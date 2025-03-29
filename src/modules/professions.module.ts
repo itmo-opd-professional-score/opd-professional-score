@@ -7,11 +7,11 @@ import { ProfessionalCharacteristicsProvider } from '../providers/professional-c
 import { ProfessionalCharacteristicsController } from '../controllers/professional-characteristics.controller';
 import { ProfessionProvider } from '../providers/profession.provider';
 import { ProfessionController } from '../controllers/professions.controller';
-import { JwtDecoderUtil } from '../utils/jwt-decoder.util';
 import { UserModule } from './user.module';
 import { ProfessionScores } from '../entities/profession-scores.entity';
 import { ArchiveProfessionsStrategy } from '../strategies/archive-professions.strategy';
 import { ElasticModule } from './elastic.module';
+import { JwtGuardModule } from './jwt.guard.module';
 
 @Module({
   imports: [
@@ -23,18 +23,17 @@ import { ElasticModule } from './elastic.module';
     ]),
     UserModule,
     ElasticModule,
+    JwtGuardModule,
   ],
   providers: [
     ProfessionalCharacteristicsProvider,
     ProfessionProvider,
-    JwtDecoderUtil,
     ArchiveProfessionsStrategy,
   ],
   controllers: [ProfessionalCharacteristicsController, ProfessionController],
   exports: [
     ProfessionalCharacteristicsProvider,
     ProfessionProvider,
-    JwtDecoderUtil,
     ArchiveProfessionsStrategy,
   ],
 })

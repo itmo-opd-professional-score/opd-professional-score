@@ -4,33 +4,22 @@ import { VerificationCodes } from '../entities/verification-codes.entity';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { UserModule } from './user.module';
 import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
 import { AuthController } from '../controllers/auth.controller';
 import { AuthProvider } from '../providers/auth.provider';
 import { BcryptUtil } from '../utils/bcrypt.util';
-import { jwtConfig } from '../config/jwt.conf';
-import { JwtAuthStrategy } from '../strategies/jwt.auth.strategy';
 import { AuthCodesStrategy } from '../strategies/auth-codes.strategy';
 import { CodeGeneratorUtil } from '../utils/code-generator.util';
+import { JwtGuardModule } from './jwt.guard.module';
 
 @Module({
   imports: [
     SequelizeModule.forFeature([User, VerificationCodes]),
     UserModule,
     PassportModule,
-    JwtModule.register({
-      secret: jwtConfig.jwtSecret,
-      signOptions: { expiresIn: jwtConfig.expiresIn },
-    }),
+    JwtGuardModule,
   ],
   controllers: [AuthController],
-  providers: [
-    AuthProvider,
-    JwtAuthStrategy,
-    BcryptUtil,
-    AuthCodesStrategy,
-    CodeGeneratorUtil,
-  ],
-  exports: [JwtModule],
+  providers: [AuthProvider, BcryptUtil, AuthCodesStrategy, CodeGeneratorUtil],
+  exports: [],
 })
 export class AuthModule {}

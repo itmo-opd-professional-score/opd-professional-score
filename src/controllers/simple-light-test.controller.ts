@@ -9,12 +9,15 @@ import {
 } from '@nestjs/common';
 import { SimpleLightTestProvider } from '../providers/simple-light-test.provider';
 import { CreateSltDto } from '../dto/test/create-slt.dto';
+import { JwtTestLinkInputDto } from '../dto/jwt/jwt-test-link-input.dto';
+import { JwtTestLinksGeneratorUtil } from '../utils/jwt-test-links-generator.util';
 
 @Controller('/test/slt')
 export class SimpleLightTestController {
   constructor(
     @Inject(SimpleLightTestProvider)
     private simpleLightTestProvider: SimpleLightTestProvider,
+    @Inject(JwtTestLinksGeneratorUtil) private jwt: JwtTestLinksGeneratorUtil,
   ) {}
 
   @Get('/getAll')
@@ -40,5 +43,10 @@ export class SimpleLightTestController {
   @Delete('/delete/:id')
   public async delete(@Param('id') id: number) {
     return await this.simpleLightTestProvider.delete(id);
+  }
+
+  @Post('jwt-encode')
+  public encode(@Body() data: JwtTestLinkInputDto) {
+    return this.jwt.createToken(data);
   }
 }

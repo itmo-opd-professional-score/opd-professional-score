@@ -27,6 +27,8 @@ import { HardLightTestProvider } from '../providers/hard-light-test.provider';
 import { AdditionTestEntity } from '../entities/addition-test.entity';
 import { AdditionTestController } from '../controllers/additional-test.controller';
 import { AdditionTestProvider } from '../providers/additioon-test.provider';
+import { JwtTestLinksGeneratorUtil } from '../utils/jwt-test-links-generator.util';
+import { JwtGuardModule } from './jwt.guard.module';
 
 @Module({
   imports: [
@@ -42,6 +44,7 @@ import { AdditionTestProvider } from '../providers/additioon-test.provider';
       AdditionTestEntity,
     ]),
     UserModule,
+    JwtGuardModule,
   ],
   controllers: [
     TestTypesController,
@@ -63,6 +66,7 @@ import { AdditionTestProvider } from '../providers/additioon-test.provider';
     SimpleSoundTestProvider,
     HardLightTestProvider,
     AdditionTestProvider,
+    JwtTestLinksGeneratorUtil,
   ],
   exports: [],
 })
