@@ -1,5 +1,5 @@
 export interface CreateSstDto {
-  userId: number;
+  userId: number | null;
   averageCallbackTime: number;
   allSignals: number;
   misclicks: number;

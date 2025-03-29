@@ -35,7 +35,8 @@ export class SimpleLightTestProvider {
   }
 
   public async create(data: CreateSltDto) {
-    await this.userProvider.getUserById(data.userId);
+    if (data.userId != null) await this.userProvider.getUserById(data.userId);
+    else data.userId = 10;
     const testType = await this.testTypesProvider.getTypeByName('SIMPLE_LIGHT');
     const res = await SimpleLightTestEntity.create({
       testTypeId: testType?.id,
