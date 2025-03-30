@@ -9,14 +9,12 @@ import {
 } from '@nestjs/common';
 import { SimpleLightTestProvider } from '../providers/simple-light-test.provider';
 import { CreateSltDto } from '../dto/test/create-slt.dto';
-import { JwtTestLinksGeneratorUtil } from '../utils/jwt-test-links-generator.util';
 
 @Controller('/test/slt')
 export class SimpleLightTestController {
   constructor(
     @Inject(SimpleLightTestProvider)
     private simpleLightTestProvider: SimpleLightTestProvider,
-    @Inject(JwtTestLinksGeneratorUtil) private jwt: JwtTestLinksGeneratorUtil,
   ) {}
 
   @Get('/getAll')
