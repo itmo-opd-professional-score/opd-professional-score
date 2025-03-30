@@ -12,6 +12,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 import { ServiceModule } from './service.module';
 import * as process from 'node:process';
+import { JwtGuardModule } from './jwt.guard.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import * as process from 'node:process';
         },
       }),
     }),
+    JwtGuardModule,
     UserModule,
     SectionModule,
     TestModule,

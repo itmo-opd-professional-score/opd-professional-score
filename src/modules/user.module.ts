@@ -5,19 +5,15 @@ import { VerificationCodes } from '../entities/verification-codes.entity';
 import { UserProvider } from '../providers/user.provider';
 import { UserController } from '../controllers/user.controller';
 import { BcryptUtil } from '../utils/bcrypt.util';
-import { JwtModule } from '@nestjs/jwt';
-import { jwtConfig } from '../config/jwt.conf';
 import { MailerProvider } from '../providers/mailer.provider';
 import { CodeGeneratorUtil } from '../utils/code-generator.util';
 import { AuthCodesStrategy } from '../strategies/auth-codes.strategy';
+import { JwtGuardModule } from './jwt.guard.module';
 
 @Module({
   imports: [
     SequelizeModule.forFeature([User, VerificationCodes]),
-    JwtModule.register({
-      secret: jwtConfig.jwtSecret,
-      signOptions: { expiresIn: jwtConfig.expiresIn },
-    }),
+    JwtGuardModule,
   ],
   providers: [
     UserProvider,
