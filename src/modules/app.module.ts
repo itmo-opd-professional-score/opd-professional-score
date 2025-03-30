@@ -7,7 +7,6 @@ import { UserModule } from './user.module';
 import { TestModule } from './test.module';
 import { ProfessionModule } from './professions.module';
 import { AuthModule } from './auth.module';
-import { SectionModule } from './section.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 import { ServiceModule } from './service.module';
@@ -46,7 +45,6 @@ import { JwtGuardModule } from './jwt.guard.module';
     }),
     JwtGuardModule,
     UserModule,
-    SectionModule,
     TestModule,
     ProfessionModule,
     AuthModule,

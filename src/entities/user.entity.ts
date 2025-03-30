@@ -1,6 +1,5 @@
 import {
   AutoIncrement,
-  BelongsToMany,
   Column,
   DataType,
   HasMany,
@@ -10,9 +9,6 @@ import {
   Unique,
 } from 'sequelize-typescript';
 import { RolesEnum } from '../config/enums/roles.enum';
-import { Test } from './test.entity';
-import { TestToUserDashboard } from './test-to-user-dashboard.entity';
-import { TestBlock } from './test-blocks.entity';
 import { ProfessionScores } from './profession-scores.entity';
 import { SimpleLightTestEntity } from './simple-light-test.entity';
 import { SimpleSoundTestEntity } from './simple-sound-test.entity';
@@ -58,9 +54,6 @@ export class User extends Model {
   @HasMany(() => ProfessionScores, { onDelete: 'CASCADE' })
   profScores: ProfessionScores[];
 
-  @HasMany(() => Test, { onDelete: 'CASCADE' })
-  test: Test[];
-
   @HasMany(() => SimpleLightTestEntity, { onDelete: 'CASCADE' })
   simpleLightTest: SimpleLightTestEntity;
 
@@ -72,10 +65,4 @@ export class User extends Model {
 
   @HasMany(() => AdditionTestEntity, { onDelete: 'CASCADE' })
   additionTest: AdditionTestEntity;
-
-  @HasMany(() => TestBlock, { onDelete: 'CASCADE' })
-  testBlocks: TestBlock[];
-
-  @BelongsToMany(() => Test, () => TestToUserDashboard)
-  tests: Test[];
 }

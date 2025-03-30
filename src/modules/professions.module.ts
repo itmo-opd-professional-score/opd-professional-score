@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ProfessionalCharacteristics } from '../entities/professional-characteristics.entity';
 import { Profession } from '../entities/professions.entity';
-import { ProfessionToTestBlock } from '../entities/profession-to-test-block.entity';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ProfessionalCharacteristicsProvider } from '../providers/professional-characteristics.provider';
 import { ProfessionalCharacteristicsController } from '../controllers/professional-characteristics.controller';
@@ -18,7 +17,6 @@ import { JwtGuardModule } from './jwt.guard.module';
     SequelizeModule.forFeature([
       ProfessionalCharacteristics,
       Profession,
-      ProfessionToTestBlock,
       ProfessionScores,
     ]),
     UserModule,
