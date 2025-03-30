@@ -15,6 +15,7 @@ import { SimpleSoundTestEntity } from './simple-sound-test.entity';
 import { HardLightTestEntity } from './hard-light-test.entity';
 import { AdditionTestEntity } from './addition-test.entity';
 import { GenderEnum } from '../config/enums/gender.enum';
+import { UserToTestBlockEntity } from './user-to-test-block.entity';
 
 @Table({ tableName: 'user' })
 export class User extends Model {
@@ -65,4 +66,7 @@ export class User extends Model {
 
   @HasMany(() => AdditionTestEntity, { onDelete: 'CASCADE' })
   additionTest: AdditionTestEntity;
+
+  @HasMany(() => UserToTestBlockEntity, { onDelete: 'CASCADE' })
+  userToTestBlock: UserToTestBlockEntity;
 }
