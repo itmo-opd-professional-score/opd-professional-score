@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { SimpleLightTestEntity } from '../entities/simple-light-test.entity';
-import { CreateSltDto } from '../dto/test/create-slt.dto';
-import { BasicSuccessfulResponse } from '../IO/basic-successful-response';
-import { SltNotFoundException } from '../exceptions/test/slt-not-found.exception';
-import { UserProvider } from './user.provider';
-import { TestTypesProvider } from './test-types.provider';
-import { TestValidationStrategy } from '../strategies/test-validation.strategy';
+import { SimpleLightTestEntity } from '../../entities/simple-light-test.entity';
+import { CreateSltDto } from '../../dto/test/create-slt.dto';
+import { BasicSuccessfulResponse } from '../../IO/basic-successful-response';
+import { SltNotFoundException } from '../../exceptions/test/slt-not-found.exception';
+import { UserProvider } from '../user.provider';
+import { TestTypesProvider } from '../test-types.provider';
+import { TestValidationStrategy } from '../../strategies/test-validation.strategy';
 
 @Injectable()
 export class SimpleLightTestProvider {

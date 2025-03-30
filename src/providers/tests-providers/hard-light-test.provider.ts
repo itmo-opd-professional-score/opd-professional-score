@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { UserProvider } from './user.provider';
-import { TestTypesProvider } from './test-types.provider';
-import { HardLightTestEntity } from '../entities/hard-light-test.entity';
-import { TestNotFoundException } from '../exceptions/test/test-not-found.exception';
-import { TestValidationStrategy } from '../strategies/test-validation.strategy';
-import { CreateHltDto } from '../dto/test/create-hlt.dto';
-import { BasicSuccessfulResponse } from '../IO/basic-successful-response';
+import { UserProvider } from '../user.provider';
+import { TestTypesProvider } from '../test-types.provider';
+import { HardLightTestEntity } from '../../entities/hard-light-test.entity';
+import { TestNotFoundException } from '../../exceptions/test/test-not-found.exception';
+import { TestValidationStrategy } from '../../strategies/test-validation.strategy';
+import { CreateHltDto } from '../../dto/test/create-hlt.dto';
+import { BasicSuccessfulResponse } from '../../IO/basic-successful-response';
 
 @Injectable()
 export class HardLightTestProvider {

@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { SimpleSoundTestEntity } from '../entities/simple-sound-test.entity';
-import { UserProvider } from './user.provider';
-import { TestTypesProvider } from './test-types.provider';
-import { TestValidationStrategy } from '../strategies/test-validation.strategy';
-import { TestNotFoundException } from '../exceptions/test/test-not-found.exception';
-import { BasicSuccessfulResponse } from '../IO/basic-successful-response';
-import { CreateSstDto } from '../dto/test/create-sst.dto';
+import { SimpleSoundTestEntity } from '../../entities/simple-sound-test.entity';
+import { UserProvider } from '../user.provider';
+import { TestTypesProvider } from '../test-types.provider';
+import { TestValidationStrategy } from '../../strategies/test-validation.strategy';
+import { TestNotFoundException } from '../../exceptions/test/test-not-found.exception';
+import { BasicSuccessfulResponse } from '../../IO/basic-successful-response';
+import { CreateSstDto } from '../../dto/test/create-sst.dto';
 
 @Injectable()
 export class SimpleSoundTestProvider {

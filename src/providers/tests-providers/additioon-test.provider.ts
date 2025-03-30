@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { UserProvider } from './user.provider';
-import { TestTypesProvider } from './test-types.provider';
-import { TestValidationStrategy } from '../strategies/test-validation.strategy';
-import { AdditionTestEntity } from '../entities/addition-test.entity';
-import { TestNotFoundException } from '../exceptions/test/test-not-found.exception';
-import { CreateAtDto } from '../dto/test/create-at.dto';
-import { BasicSuccessfulResponse } from '../IO/basic-successful-response';
+import { UserProvider } from '../user.provider';
+import { TestTypesProvider } from '../test-types.provider';
+import { TestValidationStrategy } from '../../strategies/test-validation.strategy';
+import { AdditionTestEntity } from '../../entities/addition-test.entity';
+import { TestNotFoundException } from '../../exceptions/test/test-not-found.exception';
+import { CreateAtDto } from '../../dto/test/create-at.dto';
+import { BasicSuccessfulResponse } from '../../IO/basic-successful-response';
 
 @Injectable()
 export class AdditionTestProvider {

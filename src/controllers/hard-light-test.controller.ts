@@ -7,7 +7,7 @@ import {
   Param,
   Post,
 } from '@nestjs/common';
-import { HardLightTestProvider } from '../providers/hard-light-test.provider';
+import { HardLightTestProvider } from '../providers/tests-providers/hard-light-test.provider';
 import { CreateHltDto } from '../dto/test/create-hlt.dto';
 
 @Controller('test/hlt')
