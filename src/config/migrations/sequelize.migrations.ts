@@ -14,10 +14,6 @@ const sequelize = new Sequelize(
 
 export class SequelizeMigrations {
   public async updateUserTable() {
-    await sequelize.query(`DROP TABLE "test_blocks" CASCADE;`);
-    await sequelize.query(`DROP TABLE "test_to_test_block" CASCADE;`);
-    await sequelize.query(`DROP TABLE "tests" CASCADE;`);
-    await sequelize.query(`DROP TABLE "sections" CASCADE;`);
-    await sequelize.query(`-- DROP TABLE "test_to_user_dashboard" CASCADE;`);
+    await sequelize.query(`DROP TABLE "test_to_user_dashboard" CASCADE;`);
   }
 }
