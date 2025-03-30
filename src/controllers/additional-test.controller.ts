@@ -7,7 +7,7 @@ import {
   Param,
   Post,
 } from '@nestjs/common';
-import { AdditionTestProvider } from '../providers/additioon-test.provider';
+import { AdditionTestProvider } from '../providers/tests-providers/addition-test.provider';
 import { CreateAtDto } from '../dto/test/create-at.dto';
 
 @Controller('test/at')

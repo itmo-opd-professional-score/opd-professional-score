@@ -7,7 +7,7 @@ import {
   Param,
   Post,
 } from '@nestjs/common';
-import { SimpleSoundTestProvider } from '../providers/simple-sound-test.provider';
+import { SimpleSoundTestProvider } from '../providers/tests-providers/simple-sound-test.provider';
 import { CreateSstDto } from '../dto/test/create-sst.dto';
 
 @Controller('/test/sst')

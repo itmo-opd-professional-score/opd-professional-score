@@ -7,7 +7,7 @@ import {
   Param,
   Post,
 } from '@nestjs/common';
-import { SimpleLightTestProvider } from '../providers/simple-light-test.provider';
+import { SimpleLightTestProvider } from '../providers/tests-providers/simple-light-test.provider';
 import { CreateSltDto } from '../dto/test/create-slt.dto';
 
 @Controller('/test/slt')

@@ -1,17 +1,19 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { UserProvider } from './user.provider';
-import { TestTypesProvider } from './test-types.provider';
-import { HardLightTestEntity } from '../entities/hard-light-test.entity';
-import { TestNotFoundException } from '../exceptions/test/test-not-found.exception';
-import { TestValidationStrategy } from '../strategies/test-validation.strategy';
-import { CreateHltDto } from '../dto/test/create-hlt.dto';
-import { BasicSuccessfulResponse } from '../IO/basic-successful-response';
+import { UserProvider } from '../user.provider';
+import { TestTypesProvider } from '../test-types.provider';
+import { HardLightTestEntity } from '../../entities/hard-light-test.entity';
+import { TestNotFoundException } from '../../exceptions/test/test-not-found.exception';
+import { TestValidationStrategy } from '../../strategies/test-validation.strategy';
+import { CreateHltDto } from '../../dto/test/create-hlt.dto';
+import { BasicSuccessfulResponse } from '../../IO/basic-successful-response';
+import { InvitationTestsProvider } from '../invitation-tests.provider';
 
 @Injectable()
 export class HardLightTestProvider {
   constructor(
     @Inject(UserProvider) private userProvider: UserProvider,
     @Inject(TestTypesProvider) private testTypesProvider: TestTypesProvider,
+    @Inject(InvitationTestsProvider) private itp: InvitationTestsProvider,
     @Inject(TestValidationStrategy)
     private testValidationStrategy: TestValidationStrategy,
   ) {}
@@ -36,14 +38,29 @@ export class HardLightTestProvider {
   }
 
   public async create(data: CreateHltDto) {
-    if (data.userId != null) await this.userProvider.getUserById(data.userId);
-    else data.userId = 10;
+    let notUserId: boolean = false;
+    let token: string | null = null;
+
+    if (data.userId != null) {
+      await this.userProvider.getUserById(data.userId);
+    } else {
+      notUserId = true;
+      data.userId = 10;
+    }
+
     const testType = await this.testTypesProvider.getTypeByName('HARD_LIGHT');
-    const res = await HardLightTestEntity.create({
+    const test = await HardLightTestEntity.create({
       ...data,
       testTypeId: testType?.id,
       valid: this.testValidationStrategy.validateHardLightTest(data),
     });
+
+    if (notUserId)
+      token = await this.itp.generateFeedbackToken<HardLightTestEntity>(test);
+
+    const res = {
+      testToken: token,
+    };
 
     return new BasicSuccessfulResponse(res);
   }
