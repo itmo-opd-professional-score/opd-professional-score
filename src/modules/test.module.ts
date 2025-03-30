@@ -27,6 +27,8 @@ import { JwtTestLinksGeneratorUtil } from '../utils/jwt-test-links-generator.uti
 import { JwtGuardModule } from './jwt.guard.module';
 import { InvitationTestsProvider } from '../providers/invitation-tests.provider';
 import { JwtTestsFeedbackGeneratorUtil } from '../utils/jwt-tests-feedback-generator.util';
+import { UpdateTestUserIdStrategy } from '../strategies/update-test-user-id.strategy';
+import { TestsController } from '../controllers/tests.controller';
 
 @Module({
   imports: [
@@ -50,6 +52,7 @@ import { JwtTestsFeedbackGeneratorUtil } from '../utils/jwt-tests-feedback-gener
     SimpleSoundTestController,
     HardLightTestController,
     AdditionTestController,
+    TestsController,
   ],
   providers: [
     JwtDecoderUtil,
@@ -63,6 +66,7 @@ import { JwtTestsFeedbackGeneratorUtil } from '../utils/jwt-tests-feedback-gener
     HardLightTestProvider,
     AdditionTestProvider,
     JwtTestLinksGeneratorUtil,
+    UpdateTestUserIdStrategy,
   ],
   exports: [],
 })
