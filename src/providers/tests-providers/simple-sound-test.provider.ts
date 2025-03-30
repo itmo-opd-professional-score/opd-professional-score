@@ -6,12 +6,14 @@ import { TestValidationStrategy } from '../../strategies/test-validation.strateg
 import { TestNotFoundException } from '../../exceptions/test/test-not-found.exception';
 import { BasicSuccessfulResponse } from '../../IO/basic-successful-response';
 import { CreateSstDto } from '../../dto/test/create-sst.dto';
+import { InvitationTestsProvider } from '../invitation-tests.provider';
 
 @Injectable()
 export class SimpleSoundTestProvider {
   constructor(
     @Inject(UserProvider) private userProvider: UserProvider,
     @Inject(TestTypesProvider) private testTypesProvider: TestTypesProvider,
+    @Inject(InvitationTestsProvider) private itp: InvitationTestsProvider,
     @Inject(TestValidationStrategy)
     private testValidationStrategy: TestValidationStrategy,
   ) {}
@@ -36,14 +38,29 @@ export class SimpleSoundTestProvider {
   }
 
   public async create(data: CreateSstDto) {
-    if (data.userId != null) await this.userProvider.getUserById(data.userId);
-    else data.userId = 10;
+    let notUserId: boolean = false;
+    let token: string | null = null;
+
+    if (data.userId != null) {
+      await this.userProvider.getUserById(data.userId);
+    } else {
+      notUserId = true;
+      data.userId = 10;
+    }
+
     const testType = await this.testTypesProvider.getTypeByName('SIMPLE_SOUND');
-    const res = await SimpleSoundTestEntity.create({
+    const test = await SimpleSoundTestEntity.create({
       testTypeId: testType?.id,
       ...data,
       valid: this.testValidationStrategy.validateSimpleTest(data),
     });
+
+    if (notUserId)
+      token = await this.itp.generateFeedbackToken<SimpleSoundTestEntity>(test);
+
+    const res = {
+      testToken: token,
+    };
 
     return new BasicSuccessfulResponse(res);
   }

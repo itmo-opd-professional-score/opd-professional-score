@@ -22,9 +22,11 @@ import { HardLightTestController } from '../controllers/hard-light-test.controll
 import { HardLightTestProvider } from '../providers/tests-providers/hard-light-test.provider';
 import { AdditionTestEntity } from '../entities/addition-test.entity';
 import { AdditionTestController } from '../controllers/additional-test.controller';
-import { AdditionTestProvider } from '../providers/tests-providers/additioon-test.provider';
+import { AdditionTestProvider } from '../providers/tests-providers/addition-test.provider';
 import { JwtTestLinksGeneratorUtil } from '../utils/jwt-test-links-generator.util';
 import { JwtGuardModule } from './jwt.guard.module';
+import { InvitationTestsProvider } from '../providers/invitation-tests.provider';
+import { JwtTestsFeedbackGeneratorUtil } from '../utils/jwt-tests-feedback-generator.util';
 
 @Module({
   imports: [
@@ -51,6 +53,8 @@ import { JwtGuardModule } from './jwt.guard.module';
   ],
   providers: [
     JwtDecoderUtil,
+    JwtTestsFeedbackGeneratorUtil,
+    InvitationTestsProvider,
     TestValidationStrategy,
     TestTypesProvider,
     SectionProvider,
