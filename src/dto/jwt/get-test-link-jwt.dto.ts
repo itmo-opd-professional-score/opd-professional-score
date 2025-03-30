@@ -1,4 +1,4 @@
-export interface GetJwtTestLinkDto {
+export interface GetTestLinkJwtDto {
   testId: number | null;
   testType: string;
   iat: number;
