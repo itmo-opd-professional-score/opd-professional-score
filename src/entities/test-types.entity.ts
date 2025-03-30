@@ -6,7 +6,6 @@ import {
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
-import { Test } from './test.entity';
 import { SimpleLightTestEntity } from './simple-light-test.entity';
 import { SimpleSoundTestEntity } from './simple-sound-test.entity';
 import { HardLightTestEntity } from './hard-light-test.entity';
@@ -24,9 +23,6 @@ export class TestTypes extends Model {
 
   @Column({ allowNull: false })
   description: string;
-
-  @HasMany(() => Test, { onDelete: 'CASCADE' })
-  tests: Test[];
 
   @HasMany(() => SimpleLightTestEntity, { onDelete: 'CASCADE' })
   simpleLightTest: SimpleLightTestEntity;

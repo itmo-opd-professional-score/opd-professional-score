@@ -14,6 +14,6 @@ const sequelize = new Sequelize(
 
 export class SequelizeMigrations {
   public async updateUserTable() {
-    await sequelize.query(``);
+    await sequelize.query(`DROP TABLE "test_to_user_dashboard" CASCADE;`);
   }
 }

@@ -18,6 +18,6 @@ export class TestValidationStrategy {
 
   public validateAdditionTest(data: CreateAtDto) {
     if ((1 - data.mistakes / data.allSignals) * 100 < 80) return false;
-    return data.allSignals >= 30;
+    return data.allSignals >= 25;
   }
 }
