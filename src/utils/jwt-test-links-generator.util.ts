@@ -1,18 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { JwtTestLinkOutputDto } from '../dto/jwt/jwt-test-link-output.dto';
+import { CreateTestLinkDto } from '../dto/jwt/create-test-link.dto';
 import { JwtService } from '@nestjs/jwt';
-import { JwtTestLinkInputDto } from '../dto/jwt/jwt-test-link-input.dto';
+import { GetJwtTestLinkDto } from '../dto/jwt/get-jwt-test-link.dto';
 
 @Injectable()
 export class JwtTestLinksGeneratorUtil {
   constructor(@Inject(JwtService) private jwtService: JwtService) {}
 
-  public createToken(data: JwtTestLinkOutputDto): string {
+  public createToken(data: CreateTestLinkDto): string {
     return this.jwtService.sign(data);
   }
 
   public decodeToken(token: string) {
-    return this.jwtService.verify<JwtTestLinkInputDto>(token, {
+    return this.jwtService.verify<GetJwtTestLinkDto>(token, {
       ignoreExpiration: false,
     });
   }
