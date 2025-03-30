@@ -43,7 +43,6 @@ export class AdditionTestProvider {
       await this.userProvider.getUserById(data.userId);
     } else {
       notUserId = true;
-      data.userId = 10;
     }
 
     const testType =
@@ -72,7 +71,6 @@ export class AdditionTestProvider {
       await this.userProvider.getUserById(data.userId);
     } else {
       notUserId = true;
-      data.userId = 10;
     }
 
     const testType =

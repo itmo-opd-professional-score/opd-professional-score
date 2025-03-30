@@ -45,7 +45,6 @@ export class SimpleSoundTestProvider {
       await this.userProvider.getUserById(data.userId);
     } else {
       notUserId = true;
-      data.userId = 10;
     }
 
     const testType = await this.testTypesProvider.getTypeByName('SIMPLE_SOUND');

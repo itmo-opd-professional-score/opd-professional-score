@@ -45,7 +45,6 @@ export class HardLightTestProvider {
       await this.userProvider.getUserById(data.userId);
     } else {
       notUserId = true;
-      data.userId = 10;
     }
 
     const testType = await this.testTypesProvider.getTypeByName('HARD_LIGHT');
