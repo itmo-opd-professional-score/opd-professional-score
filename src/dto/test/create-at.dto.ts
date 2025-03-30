@@ -1,5 +1,5 @@
 export interface CreateAtDto {
-  userId: number;
+  userId: number | null;
   averageCallbackTime: number;
   dispersion: number;
   allSignals: number;

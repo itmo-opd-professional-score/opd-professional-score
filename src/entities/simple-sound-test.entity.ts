@@ -9,6 +9,7 @@ import {
 } from 'sequelize-typescript';
 import { User } from './user.entity';
 import { TestTypes } from './test-types.entity';
+import { FLOAT } from 'sequelize';
 
 @Table({ tableName: 'simple-sound-test' })
 export class SimpleSoundTestEntity extends Model {
@@ -31,7 +32,7 @@ export class SimpleSoundTestEntity extends Model {
   @BelongsTo(() => User)
   user: User;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, type: FLOAT })
   averageCallbackTime: number;
 
   @Column({ allowNull: false })
@@ -40,7 +41,7 @@ export class SimpleSoundTestEntity extends Model {
   @Column({ allowNull: false })
   misclicks: number;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, type: FLOAT })
   dispersion: number;
 
   @Column({ allowNull: false })

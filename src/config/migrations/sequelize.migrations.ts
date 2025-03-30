@@ -14,7 +14,6 @@ const sequelize = new Sequelize(
 
 export class SequelizeMigrations {
   public async updateUserTable() {
-    await sequelize.query(`ALTER TABLE "user" DROP COLUMN age;`);
-    await sequelize.query(`ALTER TABLE "user" ADD COLUMN age DATE;`);
+    await sequelize.query(``);
   }
 }

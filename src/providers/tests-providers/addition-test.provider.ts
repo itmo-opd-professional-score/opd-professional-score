@@ -1,17 +1,19 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { UserProvider } from './user.provider';
-import { TestTypesProvider } from './test-types.provider';
-import { TestValidationStrategy } from '../strategies/test-validation.strategy';
-import { AdditionTestEntity } from '../entities/addition-test.entity';
-import { TestNotFoundException } from '../exceptions/test/test-not-found.exception';
-import { CreateAtDto } from '../dto/test/create-at.dto';
-import { BasicSuccessfulResponse } from '../IO/basic-successful-response';
+import { UserProvider } from '../user.provider';
+import { TestTypesProvider } from '../test-types.provider';
+import { TestValidationStrategy } from '../../strategies/test-validation.strategy';
+import { AdditionTestEntity } from '../../entities/addition-test.entity';
+import { TestNotFoundException } from '../../exceptions/test/test-not-found.exception';
+import { CreateAtDto } from '../../dto/test/create-at.dto';
+import { BasicSuccessfulResponse } from '../../IO/basic-successful-response';
+import { InvitationTestsProvider } from '../invitation-tests.provider';
 
 @Injectable()
 export class AdditionTestProvider {
   constructor(
     @Inject(UserProvider) private userProvider: UserProvider,
     @Inject(TestTypesProvider) private testTypesProvider: TestTypesProvider,
+    @Inject(InvitationTestsProvider) private itp: InvitationTestsProvider,
     @Inject(TestValidationStrategy)
     private testValidationStrategy: TestValidationStrategy,
   ) {}
@@ -34,27 +36,57 @@ export class AdditionTestProvider {
   }
 
   public async createVisualAddition(data: CreateAtDto) {
-    await this.userProvider.getUserById(data.userId);
+    let notUserId: boolean = false;
+    let token: string | null = null;
+
+    if (data.userId != null) {
+      await this.userProvider.getUserById(data.userId);
+    } else {
+      notUserId = true;
+    }
+
     const testType =
       await this.testTypesProvider.getTypeByName('VISUAL_ADDITION');
-    const res = await AdditionTestEntity.create({
+    const test = await AdditionTestEntity.create({
       ...data,
       testTypeId: testType?.id,
       valid: this.testValidationStrategy.validateAdditionTest(data),
     });
+
+    if (notUserId)
+      token = await this.itp.generateFeedbackToken<AdditionTestEntity>(test);
+
+    const res = {
+      testToken: token,
+    };
 
     return new BasicSuccessfulResponse(res);
   }
 
   public async createSoundAddition(data: CreateAtDto) {
-    await this.userProvider.getUserById(data.userId);
+    let notUserId: boolean = false;
+    let token: string | null = null;
+
+    if (data.userId != null) {
+      await this.userProvider.getUserById(data.userId);
+    } else {
+      notUserId = true;
+    }
+
     const testType =
       await this.testTypesProvider.getTypeByName('SOUND_ADDITION');
-    const res = await AdditionTestEntity.create({
+    const test = await AdditionTestEntity.create({
       ...data,
       testTypeId: testType?.id,
       valid: this.testValidationStrategy.validateAdditionTest(data),
     });
+
+    if (notUserId)
+      token = await this.itp.generateFeedbackToken<AdditionTestEntity>(test);
+
+    const res = {
+      testToken: token,
+    };
 
     return new BasicSuccessfulResponse(res);
   }

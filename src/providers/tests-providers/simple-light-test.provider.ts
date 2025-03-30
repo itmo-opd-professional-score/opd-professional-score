@@ -1,17 +1,19 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { SimpleLightTestEntity } from '../entities/simple-light-test.entity';
-import { CreateSltDto } from '../dto/test/create-slt.dto';
-import { BasicSuccessfulResponse } from '../IO/basic-successful-response';
-import { SltNotFoundException } from '../exceptions/test/slt-not-found.exception';
-import { UserProvider } from './user.provider';
-import { TestTypesProvider } from './test-types.provider';
-import { TestValidationStrategy } from '../strategies/test-validation.strategy';
+import { SimpleLightTestEntity } from '../../entities/simple-light-test.entity';
+import { CreateSltDto } from '../../dto/test/create-slt.dto';
+import { BasicSuccessfulResponse } from '../../IO/basic-successful-response';
+import { SltNotFoundException } from '../../exceptions/test/slt-not-found.exception';
+import { UserProvider } from '../user.provider';
+import { TestTypesProvider } from '../test-types.provider';
+import { TestValidationStrategy } from '../../strategies/test-validation.strategy';
+import { InvitationTestsProvider } from '../invitation-tests.provider';
 
 @Injectable()
 export class SimpleLightTestProvider {
   constructor(
     @Inject(UserProvider) private userProvider: UserProvider,
     @Inject(TestTypesProvider) private testTypesProvider: TestTypesProvider,
+    @Inject(InvitationTestsProvider) private itp: InvitationTestsProvider,
     @Inject(TestValidationStrategy)
     private testValidationStrategy: TestValidationStrategy,
   ) {}
@@ -35,13 +37,28 @@ export class SimpleLightTestProvider {
   }
 
   public async create(data: CreateSltDto) {
-    await this.userProvider.getUserById(data.userId);
+    let notUserId: boolean = false;
+    let token: string | null = null;
+
+    if (data.userId != null) {
+      await this.userProvider.getUserById(data.userId);
+    } else {
+      notUserId = true;
+    }
+
     const testType = await this.testTypesProvider.getTypeByName('SIMPLE_LIGHT');
-    const res = await SimpleLightTestEntity.create({
+    const test = await SimpleLightTestEntity.create({
       testTypeId: testType?.id,
       ...data,
       valid: this.testValidationStrategy.validateSimpleTest(data),
     });
+
+    if (notUserId)
+      token = await this.itp.generateFeedbackToken<SimpleLightTestEntity>(test);
+
+    const res = {
+      testToken: token,
+    };
 
     return new BasicSuccessfulResponse(res);
   }

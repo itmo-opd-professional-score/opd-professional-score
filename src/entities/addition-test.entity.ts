@@ -9,6 +9,7 @@ import {
 } from 'sequelize-typescript';
 import { User } from './user.entity';
 import { TestTypes } from './test-types.entity';
+import { FLOAT } from 'sequelize';
 
 @Table({ tableName: 'addition-test' })
 export class AdditionTestEntity extends Model {
@@ -31,10 +32,10 @@ export class AdditionTestEntity extends Model {
   @BelongsTo(() => TestTypes)
   testType: TestTypes;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, type: FLOAT })
   averageCallbackTime: number;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, type: FLOAT })
   dispersion: number;
 
   @Column({ allowNull: false })
