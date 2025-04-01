@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TestTypes } from '../entities/test-types.entity';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { JwtDecoderUtil } from '../utils/jwt-decoder.util';
 import { TestTypesProvider } from '../providers/test-types.provider';
 import { TestTypesController } from '../controllers/test-types.controller';
 import { UserModule } from './user.module';
@@ -21,7 +20,6 @@ import { AdditionTestProvider } from '../providers/tests-providers/addition-test
 import { JwtTestLinksGeneratorUtil } from '../utils/jwt-test-links-generator.util';
 import { JwtGuardModule } from './jwt.guard.module';
 import { InvitationTestsProvider } from '../providers/invitation-tests.provider';
-import { JwtTestsFeedbackGeneratorUtil } from '../utils/jwt-tests-feedback-generator.util';
 import { UpdateTestUserIdStrategy } from '../strategies/update-test-user-id.strategy';
 import { TestsController } from '../controllers/tests.controller';
 
@@ -46,8 +44,6 @@ import { TestsController } from '../controllers/tests.controller';
     TestsController,
   ],
   providers: [
-    JwtDecoderUtil,
-    JwtTestsFeedbackGeneratorUtil,
     InvitationTestsProvider,
     TestValidationStrategy,
     TestTypesProvider,
