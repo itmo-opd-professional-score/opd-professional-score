@@ -33,14 +33,4 @@ export class UserToTestBlockEntity extends Model {
 
   @BelongsTo(() => User)
   user: User;
-
-  async beforeSave() {
-    const testBlock = await TestBlockEntity.findOne({
-      where: { id: this.id },
-    });
-
-    if (testBlock != null) {
-      this.testBlockToken = testBlock?.testBlockToken;
-    }
-  }
 }
