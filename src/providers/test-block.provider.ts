@@ -45,7 +45,6 @@ export class TestBlockProvider {
 
   public async createTestBlock(data: CreateTestBlockDto) {
     const token = await this.testBlockGenerator.createToken(data.tests);
-    console.log(token);
     const testBlock = await TestBlockEntity.create({
       testBlockToken: token,
     });
