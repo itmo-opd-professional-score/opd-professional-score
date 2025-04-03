@@ -10,7 +10,6 @@ export class JwtDecoderUtil {
       typeof headers.authorization == 'string'
     ) {
       const token = headers.authorization.slice(7);
-
       return jwtDecode(token);
     }
   }
