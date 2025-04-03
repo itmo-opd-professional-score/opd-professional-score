@@ -13,7 +13,7 @@ jobs:
 
       - name: Assign reviewer
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ASSIGNER_TOKEN }}
           REVIEWER: 'TheGeniusOfEternity'
           PULL_REQUEST_NUMBER: ${{ github.event.number }}
         run: |
