@@ -11,11 +11,7 @@ export class JwtDecoderUtil {
     ) {
       const token = headers.authorization.slice(7);
 
-      try {
-        return jwtDecode(token);
-      } catch (error) {
-        console.error('Error decoding JWT:', error);
-      }
+      return jwtDecode(token);
     }
   }
 }
