@@ -1,11 +1,24 @@
-name: Review Assign
+name: Assign Reviewer for PR
+
 on:
   pull_request:
-    types: [opened, ready_for_review]
+    types: [opened, reopened, edited]
+
 jobs:
-  assign:
+  assign-reviewer:
     runs-on: ubuntu-latest
     steps:
-      - uses: hkusu/review-assign-action@v1
-        with:
-          reviewers: scobca
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Assign reviewer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REVIEWER: 'TheGeniusOfEternity'
+          PULL_REQUEST_NUMBER: ${{ github.event.number }}
+        run: |
+          curl -X POST \
+          https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${PULL_REQUEST_NUMBER}/requested_reviewers \
+          -H 'Authorization: Bearer ${GITHUB_TOKEN}' \
+          -H 'Content-Type: application/json' \
+          -d '{"reviewers": ["${REVIEWER}"]}'
