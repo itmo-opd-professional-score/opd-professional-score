@@ -99,6 +99,8 @@ export class AuthProvider {
       username: user.username,
       email: user.email,
       role: user.role,
+      gender: user.gender,
+      age: user.age,
       isBanned: user.isBanned,
     };
     const response: SuccessAuthResponseDto = {

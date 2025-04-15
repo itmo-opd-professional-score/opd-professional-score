@@ -99,6 +99,8 @@ export class UserProvider {
         username: newUser.username,
         email: newUser.email,
         role: newUser.role,
+        gender: newUser.gender,
+        age: newUser.age,
         isBanned: newUser.isBanned,
       }),
       role: newUser.role,
