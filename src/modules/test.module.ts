@@ -22,6 +22,12 @@ import { JwtGuardModule } from './jwt.guard.module';
 import { InvitationTestsProvider } from '../providers/invitation-tests.provider';
 import { UpdateTestUserIdStrategy } from '../strategies/update-test-user-id.strategy';
 import { TestsController } from '../controllers/tests.controller';
+import { TestSetupEntity } from '../entities/test-setup.entity';
+import { TestSetupController } from '../controllers/test-setup.controller';
+import { TestSetupProvider } from '../providers/tests-providers/test-setup.provider';
+import { RdoTestEntity } from '../entities/rdo-test.entity';
+import { RdoTestController } from '../controllers/rdo-test.controller';
+import { RdoTestProvider } from '../providers/tests-providers/rdo-test.provider';
 
 @Module({
   imports: [
@@ -31,6 +37,8 @@ import { TestsController } from '../controllers/tests.controller';
       SimpleSoundTestEntity,
       HardLightTestEntity,
       AdditionTestEntity,
+      TestSetupEntity,
+      RdoTestEntity,
     ]),
     UserModule,
     JwtGuardModule,
@@ -42,6 +50,8 @@ import { TestsController } from '../controllers/tests.controller';
     HardLightTestController,
     AdditionTestController,
     TestsController,
+    TestSetupController,
+    RdoTestController,
   ],
   providers: [
     InvitationTestsProvider,
@@ -53,6 +63,8 @@ import { TestsController } from '../controllers/tests.controller';
     AdditionTestProvider,
     JwtTestLinksGeneratorUtil,
     UpdateTestUserIdStrategy,
+    TestSetupProvider,
+    RdoTestProvider,
   ],
   exports: [],
 })
