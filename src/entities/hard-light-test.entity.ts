@@ -19,7 +19,7 @@ export class HardLightTestEntity extends Model {
   id: number;
 
   @ForeignKey(() => User)
-  @Column({ allowNull: false })
+  @Column
   userId: number;
 
   @BelongsTo(() => User)

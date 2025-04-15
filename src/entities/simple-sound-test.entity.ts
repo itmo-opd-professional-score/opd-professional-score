@@ -19,7 +19,7 @@ export class SimpleSoundTestEntity extends Model {
   id: number;
 
   @ForeignKey(() => TestTypes)
-  @Column({ allowNull: false })
+  @Column
   testTypeId: number;
 
   @BelongsTo(() => User)
