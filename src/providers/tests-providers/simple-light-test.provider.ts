@@ -50,7 +50,7 @@ export class SimpleLightTestProvider {
     const test = await SimpleLightTestEntity.create({
       testTypeId: testType?.id,
       ...data,
-      valid: this.testValidationStrategy.validateSimpleTest(data),
+      valid: await this.testValidationStrategy.validateSimpleTest(data),
     });
 
     if (notUserId)

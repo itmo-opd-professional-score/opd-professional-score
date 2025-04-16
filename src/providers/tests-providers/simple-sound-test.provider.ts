@@ -51,7 +51,7 @@ export class SimpleSoundTestProvider {
     const test = await SimpleSoundTestEntity.create({
       testTypeId: testType?.id,
       ...data,
-      valid: this.testValidationStrategy.validateSimpleTest(data),
+      valid: await this.testValidationStrategy.validateSimpleTest(data),
     });
 
     if (notUserId)

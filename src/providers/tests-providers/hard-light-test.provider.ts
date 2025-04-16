@@ -51,7 +51,7 @@ export class HardLightTestProvider {
     const test = await HardLightTestEntity.create({
       ...data,
       testTypeId: testType?.id,
-      valid: this.testValidationStrategy.validateHardLightTest(data),
+      valid: await this.testValidationStrategy.validateHardLightTest(data),
     });
 
     if (notUserId)

@@ -12,17 +12,20 @@ export class TestValidationStrategy {
 
   public async validateSimpleTest(data: CreateSltDto) {
     if ((1 - data.misclicks / data.allSignals) * 100 < 80) return false;
-    return data.allSignals >= 120 * (await this.ageBalancerUtil.balance(data));
+    const score = 120 * (await this.ageBalancerUtil.balance(data));
+    return data.allSignals >= score;
   }
 
   public async validateHardLightTest(data: CreateHltDto) {
     if ((1 - (data.mistakes + data.misclicks) / data.allSignals) * 100 < 80)
       return false;
-    return data.allSignals >= 60 * (await this.ageBalancerUtil.balance(data));
+    const score = 60 * (await this.ageBalancerUtil.balance(data));
+    return data.allSignals >= score;
   }
 
   public async validateAdditionTest(data: CreateAtDto) {
     if ((1 - data.mistakes / data.allSignals) * 100 < 80) return false;
-    return data.allSignals >= 25 * (await this.ageBalancerUtil.balance(data));
+    const score = 25 * (await this.ageBalancerUtil.balance(data));
+    return data.allSignals >= score;
   }
 }

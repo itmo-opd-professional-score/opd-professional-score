@@ -50,7 +50,7 @@ export class AdditionTestProvider {
     const test = await AdditionTestEntity.create({
       ...data,
       testTypeId: testType?.id,
-      valid: this.testValidationStrategy.validateAdditionTest(data),
+      valid: await this.testValidationStrategy.validateAdditionTest(data),
     });
 
     if (notUserId)
@@ -78,7 +78,7 @@ export class AdditionTestProvider {
     const test = await AdditionTestEntity.create({
       ...data,
       testTypeId: testType?.id,
-      valid: this.testValidationStrategy.validateAdditionTest(data),
+      valid: await this.testValidationStrategy.validateAdditionTest(data),
     });
 
     if (notUserId)

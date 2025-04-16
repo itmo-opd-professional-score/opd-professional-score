@@ -48,7 +48,7 @@ export class RdoTestProvider {
     const test = await RdoTestEntity.create({
       ...data,
       testTypeId: testType?.id,
-      valid: this.testValidationStrategy.validateAdditionTest(data),
+      valid: await this.testValidationStrategy.validateAdditionTest(data),
     });
 
     if (notUserId)
