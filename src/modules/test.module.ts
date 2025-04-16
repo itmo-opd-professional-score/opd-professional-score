@@ -28,6 +28,7 @@ import { TestSetupProvider } from '../providers/tests-providers/test-setup.provi
 import { RdoTestEntity } from '../entities/rdo-test.entity';
 import { RdoTestController } from '../controllers/rdo-test.controller';
 import { RdoTestProvider } from '../providers/tests-providers/rdo-test.provider';
+import { AgeBalancerUtil } from '../utils/age-balancer.util';
 
 @Module({
   imports: [
@@ -65,6 +66,7 @@ import { RdoTestProvider } from '../providers/tests-providers/rdo-test.provider'
     UpdateTestUserIdStrategy,
     TestSetupProvider,
     RdoTestProvider,
+    AgeBalancerUtil,
   ],
   exports: [],
 })
