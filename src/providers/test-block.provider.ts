@@ -8,12 +8,16 @@ import { BasicSuccessfulResponse } from '../IO/basic-successful-response';
 import { AssignUsersToTestBlockDto } from '../dto/test/test-blocks/assign-users-to-test-block.dto';
 import { User } from '../entities/user.entity';
 import { UserNotFoundException } from '../exceptions/users/user-not-found.exception';
+import { CreateTestBlockLinkJwtDto } from '../dto/jwt/create-test-block-link-jwt.dto';
+import { JwtTestBlockLinksGeneratorUtil } from '../utils/jwt-test-block-links-generator.util';
 
 @Injectable()
 export class TestBlockProvider {
   constructor(
     @Inject(JwtTestBlockGeneratorUtil)
     private testBlockGenerator: JwtTestBlockGeneratorUtil,
+    @Inject(JwtTestBlockLinksGeneratorUtil)
+    private linkGenerator: JwtTestBlockLinksGeneratorUtil,
   ) {}
 
   public async getAll() {
@@ -70,6 +74,10 @@ export class TestBlockProvider {
     );
 
     return new BasicSuccessfulResponse('Users assigned successfully.');
+  }
+
+  public createTestBlockLink(data: CreateTestBlockLinkJwtDto) {
+    return this.linkGenerator.createToken(data);
   }
 
   public async delete(id: number) {
