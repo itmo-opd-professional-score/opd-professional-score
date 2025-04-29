@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { CreateTestBlockDto } from '../dto/test/test-blocks/create-test-block.dto';
 import { AssignUsersToTestBlockDto } from '../dto/test/test-blocks/assign-users-to-test-block.dto';
+import { CreateTestBlockLinkJwtDto } from '../dto/jwt/create-test-block-link-jwt.dto';
 
 @Controller('/testBlock')
 export class TestBlockController {
@@ -45,6 +46,11 @@ export class TestBlockController {
   @Post('/assignUsers')
   public async assignUsers(@Body() data: AssignUsersToTestBlockDto) {
     return await this.testBlockProvider.assignTestBlockToUsers(data);
+  }
+
+  @Post('/createTestBlockLink')
+  public createTestBlockLink(@Body() data: CreateTestBlockLinkJwtDto) {
+    return this.testBlockProvider.createTestBlockLink(data);
   }
 
   @Delete('delete/:id')
