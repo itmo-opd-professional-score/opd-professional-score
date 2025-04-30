@@ -5,7 +5,8 @@ import { JwtAuthStrategy } from '../strategies/jwt.auth.strategy';
 import { JwtDecoderUtil } from '../utils/jwt-decoder.util';
 import { JwtTestLinksGeneratorUtil } from '../utils/jwt-test-links-generator.util';
 import { JwtTestsFeedbackGeneratorUtil } from '../utils/jwt-tests-feedback-generator.util';
-import { JwtTestBlockGeneratorUtil } from '../utils/jwt-test-block-generator.util';
+import { JwtTestBlockTokenGeneratorUtil } from '../utils/jwt-test-block-token-generator.util';
+import { JwtUttbTokenGeneratorUtil } from '../utils/jwt-uttb-token-generator.util';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { JwtTestBlockGeneratorUtil } from '../utils/jwt-test-block-generator.uti
     JwtDecoderUtil,
     JwtTestLinksGeneratorUtil,
     JwtTestsFeedbackGeneratorUtil,
-    JwtTestBlockGeneratorUtil,
+    JwtTestBlockTokenGeneratorUtil,
+    JwtUttbTokenGeneratorUtil,
   ],
   exports: [
     JwtModule,
@@ -27,7 +29,8 @@ import { JwtTestBlockGeneratorUtil } from '../utils/jwt-test-block-generator.uti
     JwtDecoderUtil,
     JwtTestLinksGeneratorUtil,
     JwtTestsFeedbackGeneratorUtil,
-    JwtTestBlockGeneratorUtil,
+    JwtTestBlockTokenGeneratorUtil,
+    JwtUttbTokenGeneratorUtil,
   ],
 })
 export class JwtGuardModule {}
