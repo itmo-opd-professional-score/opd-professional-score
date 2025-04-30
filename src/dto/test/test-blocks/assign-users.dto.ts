@@ -1,4 +1,4 @@
-export interface AssignUsersToTestBlockDto {
+export interface AssignUsersDto {
   testBlockId: number;
   userIDs: number[];
 }

@@ -9,26 +9,25 @@ import {
 } from 'sequelize-typescript';
 import { TestBlockEntity } from './test-block.entity';
 import { User } from './user.entity';
+import { TEXT } from 'sequelize';
 
 @Table({ tableName: 'user-to-test-block' })
 export class UserToTestBlockEntity extends Model {
   @PrimaryKey
   @AutoIncrement
-  @Column({ allowNull: false })
+  @Column
   id: number;
 
-  @ForeignKey(() => TestBlockEntity)
-  @Column({ allowNull: false })
-  testBlockId: number;
-
-  @Column
+  @Column({ allowNull: false, type: TEXT })
   testBlockToken: string;
+
+  @ForeignKey(() => TestBlockEntity)
+  testBlockId: number;
 
   @BelongsTo(() => TestBlockEntity)
   testBlock: TestBlockEntity;
 
   @ForeignKey(() => User)
-  @Column({ allowNull: false })
   userId: number;
 
   @BelongsTo(() => User)

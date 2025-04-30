@@ -1,13 +1,11 @@
 import {
   AutoIncrement,
   Column,
-  HasMany,
   Model,
   PrimaryKey,
   Table,
-  Unique,
 } from 'sequelize-typescript';
-import { UserToTestBlockEntity } from './user-to-test-block.entity';
+import { TEXT } from 'sequelize';
 
 @Table({ tableName: 'test-block' })
 export class TestBlockEntity extends Model {
@@ -16,10 +14,6 @@ export class TestBlockEntity extends Model {
   @Column({ allowNull: false })
   id: number;
 
-  @Unique
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, type: TEXT })
   testBlockToken: string;
-
-  @HasMany(() => UserToTestBlockEntity)
-  userToTestBlock: UserToTestBlockEntity;
 }
