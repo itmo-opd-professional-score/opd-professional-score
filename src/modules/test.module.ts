@@ -32,6 +32,12 @@ import { AgeBalancerUtil } from '../utils/age-balancer.util';
 import { CognitiveController } from '../controllers/cognitive-tests.controller';
 import { CognitiveTestProvider } from '../providers/tests-providers/cognitive-test.provider';
 import { CognitiveTestsEntity } from '../entities/cognitive-tests.entity';
+import { SttController } from '../controllers/stt.controller';
+import { SttProvider } from '../providers/tests-providers/stt.provider';
+import { SimpleTrackingTestsEntity } from '../entities/simple-tracking-tests.entity';
+import { HardTrackingTests } from '../entities/hard-tracking-tests.entity';
+import { HttProvider } from '../providers/tests-providers/htt.provider';
+import { HttController } from '../controllers/htt.controller';
 
 @Module({
   imports: [
@@ -44,6 +50,8 @@ import { CognitiveTestsEntity } from '../entities/cognitive-tests.entity';
       TestSetupEntity,
       RdoTestEntity,
       CognitiveTestsEntity,
+      SimpleTrackingTestsEntity,
+      HardTrackingTests,
     ]),
     UserModule,
     JwtGuardModule,
@@ -58,6 +66,8 @@ import { CognitiveTestsEntity } from '../entities/cognitive-tests.entity';
     TestSetupController,
     RdoTestController,
     CognitiveController,
+    SttController,
+    HttController,
   ],
   providers: [
     InvitationTestsProvider,
@@ -73,6 +83,8 @@ import { CognitiveTestsEntity } from '../entities/cognitive-tests.entity';
     RdoTestProvider,
     AgeBalancerUtil,
     CognitiveTestProvider,
+    SttProvider,
+    HttProvider,
   ],
   exports: [],
 })
