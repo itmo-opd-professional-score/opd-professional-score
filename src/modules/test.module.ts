@@ -35,6 +35,9 @@ import { CognitiveTestsEntity } from '../entities/cognitive-tests.entity';
 import { SttController } from '../controllers/stt.controller';
 import { SttProvider } from '../providers/tests-providers/stt.provider';
 import { SimpleTrackingTestsEntity } from '../entities/simple-tracking-tests.entity';
+import { HardTrackingTests } from '../entities/hard-tracking-tests.entity';
+import { HttProvider } from '../providers/tests-providers/htt.provider';
+import { HttController } from '../controllers/htt.controller';
 
 @Module({
   imports: [
@@ -48,6 +51,7 @@ import { SimpleTrackingTestsEntity } from '../entities/simple-tracking-tests.ent
       RdoTestEntity,
       CognitiveTestsEntity,
       SimpleTrackingTestsEntity,
+      HardTrackingTests,
     ]),
     UserModule,
     JwtGuardModule,
@@ -63,6 +67,7 @@ import { SimpleTrackingTestsEntity } from '../entities/simple-tracking-tests.ent
     RdoTestController,
     CognitiveController,
     SttController,
+    HttController,
   ],
   providers: [
     InvitationTestsProvider,
@@ -79,6 +84,7 @@ import { SimpleTrackingTestsEntity } from '../entities/simple-tracking-tests.ent
     AgeBalancerUtil,
     CognitiveTestProvider,
     SttProvider,
+    HttProvider,
   ],
   exports: [],
 })
