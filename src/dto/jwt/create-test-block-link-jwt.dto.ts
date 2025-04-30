@@ -1,9 +1,6 @@
-interface TestBlockJwtBodyDto {
-  testId: number;
-  presetId: number;
-}
+import { JwtTestBlockDto } from './jwt-test-block.dto';
 
 export interface CreateTestBlockLinkJwtDto {
   testBlockId: number;
-  testBlockBody: TestBlockJwtBodyDto[];
+  testBlockBody: JwtTestBlockDto[];
 }

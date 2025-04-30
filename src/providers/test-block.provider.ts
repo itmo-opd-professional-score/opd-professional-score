@@ -11,6 +11,7 @@ import { BasicHttpException } from '../exceptions/basic-http.exception';
 import { JwtTestBlockGeneratorUtil } from '../utils/jwt-test-block-generator.util';
 import { BasicSuccessfulResponse } from '../IO/basic-successful-response';
 import { AssignUsersToTestBlockDto } from '../dto/test/test-blocks/assign-users-to-test-block.dto';
+import { CreateTestBlockLinkJwtDto } from '../dto/jwt/create-test-block-link-jwt.dto';
 
 @Injectable()
 export class TestBlockProvider {
@@ -115,5 +116,27 @@ export class TestBlockProvider {
     }
 
     return new BasicSuccessfulResponse('Users assigned successfully.');
+  }
+
+  public async createTestBlockLink(data: CreateTestBlockLinkJwtDto) {
+    let errors = 0;
+    await this.getById(data.testBlockId);
+
+    await Promise.all(
+      data.testBlockBody.map(async (test) => {
+        const testType = await this.testTypesProvider.getTypeByName(test.name);
+        if (testType == null) errors++;
+      }),
+    );
+
+    if (errors > 0)
+      throw new BasicHttpException(
+        HttpStatus.BAD_REQUEST,
+        `Some test types not found. Request rejected`,
+      );
+
+    const token = this.linkGenerator.createToken(data);
+
+    return new BasicSuccessfulResponse(token);
   }
 }
