@@ -29,6 +29,9 @@ import { RdoTestEntity } from '../entities/rdo-test.entity';
 import { RdoTestController } from '../controllers/rdo-test.controller';
 import { RdoTestProvider } from '../providers/tests-providers/rdo-test.provider';
 import { AgeBalancerUtil } from '../utils/age-balancer.util';
+import { CognitiveController } from '../controllers/cognitive-tests.controller';
+import { CognitiveTestProvider } from '../providers/tests-providers/cognitive-test.provider';
+import { CognitiveTestsEntity } from '../entities/cognitive-tests.entity';
 
 @Module({
   imports: [
@@ -40,6 +43,7 @@ import { AgeBalancerUtil } from '../utils/age-balancer.util';
       AdditionTestEntity,
       TestSetupEntity,
       RdoTestEntity,
+      CognitiveTestsEntity,
     ]),
     UserModule,
     JwtGuardModule,
@@ -53,6 +57,7 @@ import { AgeBalancerUtil } from '../utils/age-balancer.util';
     TestsController,
     TestSetupController,
     RdoTestController,
+    CognitiveController,
   ],
   providers: [
     InvitationTestsProvider,
@@ -67,6 +72,7 @@ import { AgeBalancerUtil } from '../utils/age-balancer.util';
     TestSetupProvider,
     RdoTestProvider,
     AgeBalancerUtil,
+    CognitiveTestProvider,
   ],
   exports: [],
 })
