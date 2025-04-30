@@ -4,6 +4,7 @@ import { TestBlockNotFoundException } from '../exceptions/test/test-blocks/test-
 import { UserToTestBlockEntity } from '../entities/user-to-test-block.entity';
 import { User } from '../entities/user.entity';
 import { UserNotFoundException } from '../exceptions/users/user-not-found.exception';
+import { JwtTestBlockLinksGeneratorUtil } from '../utils/jwt-test-block-links-generator.util';
 import { CreateTestBlockDto } from '../dto/test/test-blocks/create-test-block.dto';
 import { TestTypesProvider } from './test-types.provider';
 import { BasicHttpException } from '../exceptions/basic-http.exception';
@@ -14,6 +15,8 @@ import { AssignUsersToTestBlockDto } from '../dto/test/test-blocks/assign-users-
 @Injectable()
 export class TestBlockProvider {
   constructor(
+    @Inject(JwtTestBlockLinksGeneratorUtil)
+    private linkGenerator: JwtTestBlockLinksGeneratorUtil,
     @Inject(JwtTestBlockGeneratorUtil)
     private jwtTestBlockGeneratorUtil: JwtTestBlockGeneratorUtil,
     @Inject(TestTypesProvider) private testTypesProvider: TestTypesProvider,

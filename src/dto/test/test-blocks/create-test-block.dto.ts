@@ -1,6 +1,6 @@
-import { JwtBigTestBlockDto } from '../../jwt/jwt-big-test-block.dto';
+import { JwtTestBlockDto } from '../../jwt/jwt-test-block.dto';
 
 export interface CreateTestBlockDto {
-  tests: JwtBigTestBlockDto[];
+  tests: JwtTestBlockDto[];
   userIDs: number[];
 }
