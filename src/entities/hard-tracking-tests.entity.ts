@@ -8,6 +8,7 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { User } from './user.entity';
+import { FLOAT } from 'sequelize';
 
 @Table({ tableName: 'hard-tracking-tests' })
 export class HardTrackingTests extends Model {
@@ -26,19 +27,19 @@ export class HardTrackingTests extends Model {
   @Column({ allowNull: false })
   duration: number;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, type: FLOAT })
   totalOverlap: number;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, type: FLOAT })
   bestOverlap: number;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, type: FLOAT })
   averageOverlap: number;
 
   @Column({ allowNull: false })
   overlapCount: number;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, type: FLOAT })
   successRate: number;
 
   @Column({ allowNull: false })

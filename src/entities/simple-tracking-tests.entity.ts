@@ -8,6 +8,7 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { User } from './user.entity';
+import { FLOAT } from 'sequelize';
 
 @Table({ tableName: 'simple-tracking-tests' })
 export class SimpleTrackingTestsEntity extends Model {
@@ -29,10 +30,10 @@ export class SimpleTrackingTestsEntity extends Model {
   @Column({ allowNull: false })
   successCount: number;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, type: FLOAT })
   avgTime: number;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, type: FLOAT })
   timeDeviation: number;
 
   @Column({ allowNull: false })
