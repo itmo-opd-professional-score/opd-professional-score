@@ -2,7 +2,7 @@ import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
 import { CognitiveTestProvider } from '../providers/tests-providers/cognitive-test.provider';
 import { CreateCognitiveDto } from '../dto/test/create-cognitive.dto';
 
-@Controller('/cognitive')
+@Controller('/test/cognitive')
 export class CognitiveController {
   constructor(
     @Inject(CognitiveTestProvider)
@@ -19,7 +19,7 @@ export class CognitiveController {
     return this.cognitiveTestProvider.getById(id);
   }
 
-  @Get('/getByUserId/:id')
+  @Get('/getByUserId/:userId')
   public async getByUserId(@Param('userId') userId: number) {
     return this.cognitiveTestProvider.getByUserId(userId);
   }

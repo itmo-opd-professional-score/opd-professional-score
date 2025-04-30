@@ -4,6 +4,8 @@ import { TestNotFoundException } from '../../exceptions/test/test-not-found.exce
 import { TestTypesProvider } from '../test-types.provider';
 import { CreateCognitiveDto } from '../../dto/test/create-cognitive.dto';
 import { BasicSuccessfulResponse } from '../../IO/basic-successful-response';
+import { User } from '../../entities/user.entity';
+import { UserNotFoundException } from '../../exceptions/users/user-not-found.exception';
 
 @Injectable()
 export class CognitiveTestProvider {
@@ -19,9 +21,14 @@ export class CognitiveTestProvider {
     const test = await CognitiveTestsEntity.findOne({ where: { id: id } });
     if (test == null)
       throw new TestNotFoundException(id, 'id', 'Cognitive test');
+
+    return test;
   }
 
   public async getByUserId(userId: number) {
+    const user = await User.findOne({ where: { id: userId } });
+    if (user == null) throw new UserNotFoundException(userId, `id`);
+
     return await CognitiveTestsEntity.findAll({ where: { userId: userId } });
   }
 
