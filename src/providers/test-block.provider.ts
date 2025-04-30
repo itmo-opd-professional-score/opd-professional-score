@@ -139,4 +139,11 @@ export class TestBlockProvider {
 
     return new BasicSuccessfulResponse(token);
   }
+
+  public async deleteTestBlock(testBlockId: number) {
+    const testBlock = await this.getById(testBlockId);
+    await TestBlockEntity.destroy({ where: { id: testBlock.id } });
+
+    return new BasicSuccessfulResponse('Test block deleted successfully.');
+  }
 }

@@ -40,12 +40,12 @@ export class TestBlockController {
 
   @Post('/create')
   public async create(@Body() data: CreateTestBlockDto) {
-    return await this.testBlockProvider.createTestBlock(data);
+    return await this.testBlockProvider.create(data);
   }
 
   @Post('/assignUsers')
   public async assignUsers(@Body() data: AssignUsersToTestBlockDto) {
-    return await this.testBlockProvider.assignTestBlockToUsers(data);
+    return await this.testBlockProvider.assignUsers(data);
   }
 
   @Post('/createTestBlockLink')
@@ -55,6 +55,6 @@ export class TestBlockController {
 
   @Delete('delete/:id')
   public async remove(@Param('id') id: number) {
-    return await this.testBlockProvider.delete(id);
+    return await this.testBlockProvider.deleteTestBlock(id);
   }
 }
