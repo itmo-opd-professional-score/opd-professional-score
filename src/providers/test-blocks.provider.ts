@@ -131,8 +131,8 @@ export class TestBlocksProvider {
 
     await Promise.all(
       tests.map((test) => {
-        if (test.name == data.updatedTests.name) {
-          test.available = data.updatedTests.available;
+        if (test.name == data.updatedTest.name) {
+          test.available = data.updatedTest.available;
         }
       }),
     );
