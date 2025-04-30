@@ -11,6 +11,7 @@ import {
 import { TestTypesProvider } from '../providers/test-types.provider';
 import { CreateTestTypeDto } from '../dto/test/test-types/create-test-type.dto';
 import { UpdateTypeDto } from '../dto/test/test-types/update-type.dto';
+import { BasicSuccessfulResponse } from '../IO/basic-successful-response';
 
 @Controller('/testTypes')
 export class TestTypesController {
@@ -36,6 +37,17 @@ export class TestTypesController {
   @Post('create')
   async createTestType(@Body() data: CreateTestTypeDto) {
     return await this.testTypesProvider.createType(data);
+  }
+
+  @Post('/createPull')
+  async createPull(@Body() data: CreateTestTypeDto[]) {
+    await Promise.all(
+      data.map(async (testType) => {
+        await this.testTypesProvider.createType(testType);
+      }),
+    );
+
+    return new BasicSuccessfulResponse('Test types created successfully.');
   }
 
   @Patch('/update')
