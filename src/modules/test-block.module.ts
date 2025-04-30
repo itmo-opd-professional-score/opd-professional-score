@@ -6,13 +6,18 @@ import { TestBlockProvider } from '../providers/test-block.provider';
 import { TestBlockController } from '../controllers/test-block.controller';
 import { JwtGuardModule } from './jwt.guard.module';
 import { JwtTestBlockLinksGeneratorUtil } from '../utils/jwt-test-block-links-generator.util';
+import { TestTypesProvider } from '../providers/test-types.provider';
 
 @Module({
   imports: [
     SequelizeModule.forFeature([TestBlockEntity, UserToTestBlockEntity]),
     JwtGuardModule,
   ],
-  providers: [TestBlockProvider, JwtTestBlockLinksGeneratorUtil],
+  providers: [
+    TestBlockProvider,
+    JwtTestBlockLinksGeneratorUtil,
+    TestTypesProvider,
+  ],
   controllers: [TestBlockController],
   exports: [],
 })
