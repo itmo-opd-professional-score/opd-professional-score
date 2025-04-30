@@ -2,7 +2,7 @@ import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
 import { HttProvider } from '../providers/tests-providers/htt.provider';
 import { CreateHttDto } from '../dto/test/create-htt.dto';
 
-@Controller('/tracking/hard')
+@Controller('/test/tracking/hard')
 export class HttController {
   constructor(@Inject(HttProvider) private httProvider: HttProvider) {}
 

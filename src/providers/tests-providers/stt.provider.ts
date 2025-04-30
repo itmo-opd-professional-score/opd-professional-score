@@ -3,6 +3,7 @@ import { SimpleTrackingTestsEntity } from '../../entities/simple-tracking-tests.
 import { CreateSttDto } from '../../dto/test/create-stt.dto';
 import { UserProvider } from '../user.provider';
 import { BasicSuccessfulResponse } from '../../IO/basic-successful-response';
+import { TestNotFoundException } from '../../exceptions/test/test-not-found.exception';
 
 @Injectable()
 export class SttProvider {
@@ -13,7 +14,11 @@ export class SttProvider {
   }
 
   public async getById(id: number) {
-    return await SimpleTrackingTestsEntity.findOne({ where: { id: id } });
+    const test = await SimpleTrackingTestsEntity.findOne({ where: { id: id } });
+    if (test == null)
+      throw new TestNotFoundException(id, 'id', 'Simple tracking test');
+
+    return test;
   }
 
   public async getByUserId(userId: number) {

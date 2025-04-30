@@ -2,7 +2,7 @@ import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
 import { SttProvider } from '../providers/tests-providers/stt.provider';
 import { CreateSttDto } from '../dto/test/create-stt.dto';
 
-@Controller('/tracking/simple')
+@Controller('/test/tracking/simple')
 export class SttController {
   constructor(@Inject(SttProvider) private sttProvider: SttProvider) {}
 
