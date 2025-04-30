@@ -121,12 +121,18 @@ export class TestBlocksProvider {
     const user = await User.findOne({ where: { id: data.userId } });
     if (user == null) throw new UserNotFoundException(data.userId, 'id');
 
-    const testBlock = await this.getTestBlockById(data.testBlockId);
     const oldValue = await UserToTestBlockEntity.findOne({
       where: { testBlockId: data.testBlockId, userId: data.userId },
     });
+
+    if (oldValue == null)
+      throw new BasicHttpException(
+        HttpStatus.NOT_FOUND,
+        'Information about test-block not found.',
+      );
+
     const tests = this.jwtTestBlockTokenGeneratorUtil.decode(
-      testBlock.testBlockToken,
+      oldValue.testBlockToken,
     ).tests;
 
     await Promise.all(
