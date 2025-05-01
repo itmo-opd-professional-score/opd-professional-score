@@ -1,3 +1,5 @@
+import { AccelerationModesEnum } from '../../../config/enums/acceleration-modes.enum';
+
 export interface UpdateSetupDto {
   id: number;
   updated: Updatable;
@@ -5,12 +7,10 @@ export interface UpdateSetupDto {
 
 interface Updatable {
   testName?: string;
+  testTypeId?: number;
   duration?: number;
   showTimer?: boolean;
-  showMinuteResults?: boolean;
   showTotalResults?: boolean;
   showProgress?: boolean;
-  accelerationAmount?: number;
-  accelerationInterval?: number;
-  accelerationFrequency?: number;
+  accelerationMode?: AccelerationModesEnum;
 }

@@ -33,13 +33,13 @@ export class TestSetupProvider {
   }
 
   public async createSetup(data: CreateTestSetupDto) {
-    const type = await TestTypes.findOne({ where: { name: data.testType } });
+    const type = await TestTypes.findOne({ where: { id: data.testTypeId } });
     if (type == null)
-      throw new TestTypeNotFoundException(data.testType, 'name');
+      throw new TestTypeNotFoundException(data.testTypeId, 'id');
 
     const res = await TestSetupEntity.create({
       ...data,
-      testTypeId: type.id,
+      testTypeId: data.testTypeId,
     });
 
     return new BasicSuccessfulResponse(res);

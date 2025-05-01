@@ -2,15 +2,16 @@ import {
   AutoIncrement,
   BelongsTo,
   Column,
+  DataType,
   ForeignKey,
   Model,
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
-import { FLOAT } from 'sequelize';
 import { TestTypes } from './test-types.entity';
+import { AccelerationModesEnum } from '../config/enums/acceleration-modes.enum';
 
-@Table({ tableName: 'tests-settings' })
+@Table({ tableName: 'tests-setups' })
 export class TestSetupEntity extends Model {
   @PrimaryKey
   @AutoIncrement
@@ -34,20 +35,14 @@ export class TestSetupEntity extends Model {
   showTimer: boolean;
 
   @Column({ allowNull: false })
-  showMinuteResults: boolean;
-
-  @Column({ allowNull: false })
   showTotalResults: boolean;
 
   @Column({ allowNull: false })
   showProgress: boolean;
 
-  @Column({ allowNull: false, type: FLOAT })
-  accelerationAmount: number;
-
-  @Column({ allowNull: false, type: FLOAT })
-  accelerationInterval: number;
-
-  @Column({ allowNull: false, type: FLOAT })
-  accelerationFrequency: number;
+  @Column({
+    allowNull: false,
+    type: DataType.ENUM(...Object.values(AccelerationModesEnum)),
+  })
+  accelerationMode: AccelerationModesEnum;
 }

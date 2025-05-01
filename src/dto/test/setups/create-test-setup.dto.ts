@@ -1,12 +1,11 @@
+import { AccelerationModesEnum } from '../../../config/enums/acceleration-modes.enum';
+
 export interface CreateTestSetupDto {
   testName: string;
-  testType: string;
+  testTypeId: number;
   duration: number;
   showTimer: boolean;
-  showMinuteResults: boolean;
   showTotalResults: boolean;
   showProgress: boolean;
-  accelerationAmount: number;
-  accelerationInterval: number;
-  accelerationFrequency: number;
+  accelerationMode: AccelerationModesEnum;
 }
