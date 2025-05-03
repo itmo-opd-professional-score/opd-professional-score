@@ -59,6 +59,13 @@ export class TestBlocksProvider {
   }
 
   public async createTestBlock(data: CreateTestBlockDto) {
+    await Promise.all(
+      data.userIDs.map(async (userID) => {
+        const user = await User.findOne({ where: { id: userID } });
+        if (user == null) throw new UserNotFoundException(userID, 'userID');
+      }),
+    );
+
     let errors = 0;
 
     await Promise.all(
