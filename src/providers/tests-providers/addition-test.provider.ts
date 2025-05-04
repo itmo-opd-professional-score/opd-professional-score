@@ -46,7 +46,7 @@ export class AdditionTestProvider {
     }
 
     const testType =
-      await this.testTypesProvider.getTypeByName('VISUAL_ADDITION');
+      await this.testTypesProvider.getTypeByName('ADDITION_SOUND');
     const test = await AdditionTestEntity.create({
       ...data,
       testTypeId: testType?.id,

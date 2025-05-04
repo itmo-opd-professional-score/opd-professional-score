@@ -49,7 +49,7 @@ export class UpdateTestUserIdStrategy {
           case 'SOUND_ADDITION':
             await this.updateAT(data.userId, testId);
             break;
-          case 'VISUAL_ADDITION':
+          case 'ADDITION_SOUND':
             await this.updateAT(data.userId, testId);
             break;
         }
