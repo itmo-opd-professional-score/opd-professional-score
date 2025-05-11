@@ -35,7 +35,7 @@ export class CognitiveTestsEntity extends Model {
 
   @ForeignKey(() => TestTypes)
   @Column({ allowNull: false })
-  testTypesId: number;
+  testTypeId: number;
 
   @BelongsTo(() => TestTypes)
   testTypes: TestTypes;
