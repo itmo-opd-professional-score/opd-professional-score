@@ -39,9 +39,9 @@ export class SttProvider {
     const test = await SimpleTrackingTestsEntity.create({
       userId: data.userId,
       allSignals: data.allSignals,
-      successCount: data.successCount,
+      successCount: data.score,
       averageCallbackTime: data.averageCallbackTime,
-      timeDeviation: data.timeDeviation,
+      timeDeviation: data.dispersion,
       valid: true,
       testTypeId: testType?.id,
     });

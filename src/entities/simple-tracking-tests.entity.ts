@@ -36,13 +36,13 @@ export class SimpleTrackingTestsEntity extends Model {
   allSignals: number;
 
   @Column({ allowNull: false })
-  successCount: number;
+  score: number;
 
   @Column({ allowNull: false, type: FLOAT })
   averageCallbackTime: number;
 
   @Column({ allowNull: false, type: FLOAT })
-  timeDeviation: number;
+  dispersion: number;
 
   @Column({ allowNull: false })
   valid: boolean;

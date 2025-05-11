@@ -1,8 +1,8 @@
 export interface CreateSttDto {
   userId: number;
   allSignals: number;
-  successCount: number;
+  score: number;
   averageCallbackTime: number;
-  timeDeviation: number;
+  dispersion: number;
   testType: string;
 }
