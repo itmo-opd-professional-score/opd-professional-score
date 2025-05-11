@@ -40,7 +40,7 @@ export class SttProvider {
       userId: data.userId,
       allSignals: data.allSignals,
       successCount: data.successCount,
-      avgTime: data.avgTime,
+      averageCallbackTime: data.averageCallbackTime,
       timeDeviation: data.timeDeviation,
       valid: true,
       testTypeId: testType?.id,

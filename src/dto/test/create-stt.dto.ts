@@ -2,7 +2,7 @@ export interface CreateSttDto {
   userId: number;
   allSignals: number;
   successCount: number;
-  avgTime: number;
+  averageCallbackTime: number;
   timeDeviation: number;
   testType: string;
 }
