@@ -3,6 +3,6 @@ export interface CreateSttDto {
   allSignals: number;
   successCount: number;
   averageCallbackTime: number;
-  timeDeviation: number;
+  dispersion: number;
   testType: string;
 }

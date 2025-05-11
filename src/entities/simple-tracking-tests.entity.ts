@@ -42,7 +42,7 @@ export class SimpleTrackingTestsEntity extends Model {
   averageCallbackTime: number;
 
   @Column({ allowNull: false, type: FLOAT })
-  timeDeviation: number;
+  dispersion: number;
 
   @Column({ allowNull: false })
   valid: boolean;
