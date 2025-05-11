@@ -40,7 +40,7 @@ export class CognitiveTestProvider {
       allSignals: data.allSignals,
       score: data.score,
       mistakes: data.mistakes,
-      testTypesId: testType?.id,
+      testTypeId: testType?.id,
       valid: true,
     });
 
