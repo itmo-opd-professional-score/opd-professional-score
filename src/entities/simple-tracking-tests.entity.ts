@@ -9,6 +9,7 @@ import {
 } from 'sequelize-typescript';
 import { User } from './user.entity';
 import { FLOAT } from 'sequelize';
+import { TestTypes } from './test-types.entity';
 
 @Table({ tableName: 'simple-tracking-tests' })
 export class SimpleTrackingTestsEntity extends Model {
@@ -23,6 +24,13 @@ export class SimpleTrackingTestsEntity extends Model {
 
   @BelongsTo(() => User)
   user: User;
+
+  @ForeignKey(() => TestTypes)
+  @Column({ allowNull: false })
+  testTypeId: number;
+
+  @BelongsTo(() => TestTypes)
+  testTypes: TestTypes;
 
   @Column({ allowNull: false })
   allSignals: number;
