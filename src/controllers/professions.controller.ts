@@ -40,6 +40,16 @@ export class ProfessionController {
     return await this.professionProvider.createPullOfProfessions(data);
   }
 
+  @Patch('/archive/:id')
+  public async archive(@Param('id') id: number) {
+    return await this.professionProvider.archiveProfession(id);
+  }
+
+  @Patch('/unarchive/:id')
+  public async unarchive(@Param('id') id: number) {
+    return await this.professionProvider.unarchiveProfession(id);
+  }
+
   @Patch('/updateProfession')
   public async updateProfession(@Body() data: UpdateProfessionDto) {
     return await this.professionProvider.updateProfession(data);

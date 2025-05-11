@@ -49,6 +49,26 @@ export class ProfessionProvider {
     return new BasicSuccessfulResponse(res);
   }
 
+  public async archiveProfession(
+    id: number,
+  ): Promise<BasicSuccessfulResponse<string>> {
+    await this.getProfessionById(id);
+
+    await Profession.update({ archived: true }, { where: { id: id } });
+
+    return new BasicSuccessfulResponse('Profession archived successfully');
+  }
+
+  public async unarchiveProfession(
+    id: number,
+  ): Promise<BasicSuccessfulResponse<string>> {
+    await this.getProfessionById(id);
+
+    await Profession.update({ archived: false }, { where: { id: id } });
+
+    return new BasicSuccessfulResponse('Profession unarchived successfully');
+  }
+
   public async updateProfession(
     data: UpdateProfessionDto,
   ): Promise<BasicSuccessfulResponse<Profession>> {
