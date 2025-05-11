@@ -45,7 +45,6 @@ export class ElasticUtil {
     }
   }
 
-  // Universal model for searching documents
   async getOne<T>(classDTO: T, index: string, query: string) {
     const excessVar: string[] = ['id', 'index'];
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
