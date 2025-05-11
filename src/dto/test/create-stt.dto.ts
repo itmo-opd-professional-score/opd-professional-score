@@ -4,4 +4,5 @@ export interface CreateSttDto {
   successCount: number;
   avgTime: number;
   timeDeviation: number;
+  testType: string;
 }
