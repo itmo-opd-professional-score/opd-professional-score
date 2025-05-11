@@ -4,10 +4,14 @@ import { CreateSttDto } from '../../dto/test/create-stt.dto';
 import { UserProvider } from '../user.provider';
 import { BasicSuccessfulResponse } from '../../IO/basic-successful-response';
 import { TestNotFoundException } from '../../exceptions/test/test-not-found.exception';
+import { TestTypesProvider } from '../test-types.provider';
 
 @Injectable()
 export class SttProvider {
-  constructor(@Inject(UserProvider) private userProvider: UserProvider) {}
+  constructor(
+    @Inject(UserProvider) private userProvider: UserProvider,
+    @Inject(TestTypesProvider) private testTypesProvider: TestTypesProvider,
+  ) {}
 
   public async getAll() {
     return await SimpleTrackingTestsEntity.findAll();
@@ -30,6 +34,7 @@ export class SttProvider {
 
   public async create(data: CreateSttDto) {
     await this.userProvider.getUserById(data.userId);
+    const testType = await this.testTypesProvider.getTypeByName(data.testType);
 
     const test = await SimpleTrackingTestsEntity.create({
       userId: data.userId,
@@ -38,6 +43,7 @@ export class SttProvider {
       avgTime: data.avgTime,
       timeDeviation: data.timeDeviation,
       valid: true,
+      testType: testType?.id,
     });
     return new BasicSuccessfulResponse(test);
   }
