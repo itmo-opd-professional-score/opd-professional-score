@@ -4,10 +4,14 @@ import { HardTrackingTests } from '../../entities/hard-tracking-tests.entity';
 import { TestNotFoundException } from '../../exceptions/test/test-not-found.exception';
 import { CreateHttDto } from '../../dto/test/create-htt.dto';
 import { BasicSuccessfulResponse } from '../../IO/basic-successful-response';
+import { TestTypesProvider } from '../test-types.provider';
 
 @Injectable()
 export class HttProvider {
-  constructor(@Inject(UserProvider) private userProvider: UserProvider) {}
+  constructor(
+    @Inject(UserProvider) private userProvider: UserProvider,
+    @Inject(TestTypesProvider) private testTypesProvider: TestTypesProvider,
+  ) {}
 
   public async getAll() {
     return await HardTrackingTests.findAll();
@@ -28,6 +32,7 @@ export class HttProvider {
 
   public async create(data: CreateHttDto) {
     await this.userProvider.getUserById(data.userId);
+    const testType = await this.testTypesProvider.getTypeByName(data.testType);
 
     const test = await HardTrackingTests.create({
       userId: data.userId,
@@ -38,6 +43,7 @@ export class HttProvider {
       overlapCount: data.overlapCount,
       successRate: data.successRate,
       valid: true,
+      testTypeId: testType?.id,
     });
 
     return new BasicSuccessfulResponse(test);

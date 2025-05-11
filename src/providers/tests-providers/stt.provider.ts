@@ -35,7 +35,6 @@ export class SttProvider {
   public async create(data: CreateSttDto) {
     await this.userProvider.getUserById(data.userId);
     const testType = await this.testTypesProvider.getTypeByName(data.testType);
-    console.log(testType?.id);
 
     const test = await SimpleTrackingTestsEntity.create({
       userId: data.userId,
