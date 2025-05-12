@@ -12,7 +12,6 @@ export class ElasticUtil {
     @Inject(ElasticsearchService) private ess: ElasticsearchService,
   ) {}
 
-  // Return all documents if field "index" parameter equals void string and sort documents for index if field "index" not void
   async getAllDocumentsByTopic(index: string) {
     try {
       const res = await this.ess.search({
