@@ -48,7 +48,7 @@ export class HardTrackingTests extends Model {
   overlapCount: number;
 
   @Column({ allowNull: false, type: FLOAT })
-  successRate: number;
+  score: number;
 
   @Column({ allowNull: false })
   valid: boolean;

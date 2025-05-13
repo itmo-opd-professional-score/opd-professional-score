@@ -4,5 +4,4 @@ export interface CreateSttDto {
   score: number;
   averageCallbackTime: number;
   dispersion: number;
-  testType: string;
 }

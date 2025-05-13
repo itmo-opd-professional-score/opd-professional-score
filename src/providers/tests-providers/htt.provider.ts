@@ -41,7 +41,7 @@ export class HttProvider {
       bestOverlap: data.bestOverlap,
       averageOverlap: data.averageOverlap,
       overlapCount: data.overlapCount,
-      successRate: data.successRate,
+      score: data.score,
       valid: true,
       testTypeId: testType?.id,
     });

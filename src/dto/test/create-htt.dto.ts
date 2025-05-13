@@ -6,5 +6,5 @@ export interface CreateHttDto {
   bestOverlap: number;
   averageOverlap: number;
   overlapCount: number;
-  successRate: number;
+  score: number;
 }

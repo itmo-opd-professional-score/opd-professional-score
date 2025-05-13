@@ -34,14 +34,15 @@ export class SttProvider {
 
   public async create(data: CreateSttDto) {
     await this.userProvider.getUserById(data.userId);
-    const testType = await this.testTypesProvider.getTypeByName(data.testType);
+    const testType =
+      await this.testTypesProvider.getTypeByName('SIMPLE_TRACKING');
 
     const test = await SimpleTrackingTestsEntity.create({
       userId: data.userId,
       allSignals: data.allSignals,
-      successCount: data.score,
+      score: data.score,
       averageCallbackTime: data.averageCallbackTime,
-      timeDeviation: data.dispersion,
+      dispersion: data.dispersion,
       valid: true,
       testTypeId: testType?.id,
     });
