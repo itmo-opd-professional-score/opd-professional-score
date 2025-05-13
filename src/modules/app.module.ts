@@ -13,6 +13,7 @@ import { ServiceModule } from './service.module';
 import * as process from 'node:process';
 import { JwtGuardModule } from './jwt.guard.module';
 import { TestBlockModule } from './test-block.module';
+import { NeuroCollectorsModule } from './neuro-collectors.module';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { TestBlockModule } from './test-block.module';
     ProfessionModule,
     AuthModule,
     ServiceModule,
+    NeuroCollectorsModule,
   ],
   controllers: [AppController],
   providers: [AppProvider],

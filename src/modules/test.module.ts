@@ -86,6 +86,6 @@ import { HttController } from '../controllers/htt.controller';
     SttProvider,
     HttProvider,
   ],
-  exports: [],
+  exports: [TestTypesProvider],
 })
 export class TestModule {}
