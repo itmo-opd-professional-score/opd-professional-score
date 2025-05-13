@@ -4,12 +4,14 @@ import {
   Column,
   DataType,
   ForeignKey,
+  HasMany,
   Model,
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 import { TestTypes } from './test-types.entity';
 import { AccelerationModesEnum } from '../config/enums/acceleration-modes.enum';
+import { TestInTestBatteryEntity } from './test-in-test-battery.entity';
 
 @Table({ tableName: 'tests-setups' })
 export class TestSetupEntity extends Model {
@@ -45,4 +47,7 @@ export class TestSetupEntity extends Model {
     type: DataType.ENUM(...Object.values(AccelerationModesEnum)),
   })
   accelerationMode: AccelerationModesEnum;
+
+  @HasMany(() => TestInTestBatteryEntity)
+  testInTestBattery: TestInTestBatteryEntity;
 }
