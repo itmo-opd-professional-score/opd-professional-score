@@ -38,8 +38,6 @@ import { SimpleTrackingTestsEntity } from '../entities/simple-tracking-tests.ent
 import { HardTrackingTests } from '../entities/hard-tracking-tests.entity';
 import { HttProvider } from '../providers/tests-providers/htt.provider';
 import { HttController } from '../controllers/htt.controller';
-import { TestBatteriesEntity } from '../entities/test-batteries.entity';
-import { TestInTestBatteryEntity } from '../entities/test-in-test-battery.entity';
 
 @Module({
   imports: [
@@ -54,8 +52,6 @@ import { TestInTestBatteryEntity } from '../entities/test-in-test-battery.entity
       CognitiveTestsEntity,
       SimpleTrackingTestsEntity,
       HardTrackingTests,
-      TestBatteriesEntity,
-      TestInTestBatteryEntity,
     ]),
     UserModule,
     JwtGuardModule,
