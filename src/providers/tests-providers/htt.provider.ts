@@ -32,7 +32,8 @@ export class HttProvider {
 
   public async create(data: CreateHttDto) {
     await this.userProvider.getUserById(data.userId);
-    const testType = await this.testTypesProvider.getTypeByName(data.testType);
+    const testType =
+      await this.testTypesProvider.getTypeByName('HARD_TRACKING');
 
     const test = await HardTrackingTests.create({
       userId: data.userId,
