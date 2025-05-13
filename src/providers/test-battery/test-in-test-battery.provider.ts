@@ -5,6 +5,8 @@ import { CreateTestInTestBatteryDto } from '../../dto/test/test-battery/create-t
 import { BasicSuccessfulResponse } from '../../IO/basic-successful-response';
 import { TestBatteryNotFoundException } from '../../exceptions/test/test-battery/test-battery-not-found.exception';
 import { TestBatteriesEntity } from '../../entities/test-batteries.entity';
+import { TestSetupEntity } from '../../entities/test-setup.entity';
+import { TestNotFoundException } from '../../exceptions/test/test-not-found.exception';
 
 @Injectable()
 export class TestInTestBatteryProvider {
@@ -32,9 +34,17 @@ export class TestInTestBatteryProvider {
   }
 
   public async create(data: CreateTestInTestBatteryDto, testBatteryId: number) {
-    const battery = await TestInTestBatteryEntity.findOne({
+    const battery = await TestBatteriesEntity.findOne({
       where: { id: testBatteryId },
     });
+
+    if (data.setupId != null) {
+      const setup = await TestSetupEntity.findOne({
+        where: { id: data.setupId },
+      });
+      if (setup == null)
+        throw new TestNotFoundException(data.setupId, 'id', 'Test setup');
+    }
 
     if (battery == null)
       throw new TestBatteryNotFoundException(testBatteryId, 'id');
@@ -58,7 +68,7 @@ export class TestInTestBatteryProvider {
   }
 
   public async deleteAllById(testBatteryId: number) {
-    const battery = await TestInTestBatteryEntity.findOne({
+    const battery = await TestBatteriesEntity.findOne({
       where: { id: testBatteryId },
     });
 
