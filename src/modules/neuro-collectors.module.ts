@@ -11,9 +11,10 @@ import { SimpleSoundTestCollectorUtil } from '../utils/collectors/simple-sound-t
 import { SimpleTrackingTestCollectorUtil } from '../utils/collectors/simple-tracking-test-collector.util';
 import { FinalCollectorUtil } from '../utils/collectors/final-collector.util';
 import { NeuroController } from '../utils/collectors/controllers/neuro.controller';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [UserModule, TestModule],
+  imports: [UserModule, TestModule, HttpModule],
   providers: [
     AdditionTestCollectorUtil,
     CognitiveTestCollectorUtil,

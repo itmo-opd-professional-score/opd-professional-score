@@ -9,6 +9,11 @@ export class NeuroController {
 
   @Get('/collect/:userId')
   public async collect(@Param('userId') userId: number) {
-    return await this.collector.collectData(userId);
+    return await this.collector.collectDataForInfo(userId);
+  }
+
+  @Get('/predict/:userId')
+  public async predict(@Param('userId') userId: number) {
+    return await this.collector.collectDataForPrediction(userId);
   }
 }
